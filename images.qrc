@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/background.png</file>
+        <file>images/refresh.png</file>
+        <file>images/slide.png</file>
+        <file>images/up.png</file>
+        <file>images/volume.png</file>
+        <file>images/down.png</file>
+        <file>images/logo.png</file>
+        <file>images/menu.png</file>
+        <file>images/center.png</file>
+        <file>images/hand.png</file>
+        <file>images/play.png</file>
+        <file>images/stop.png</file>
+        <file>images/star.png</file>
+    </qresource>
+</RCC>
