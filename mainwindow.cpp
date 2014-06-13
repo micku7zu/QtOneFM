@@ -11,22 +11,10 @@ MainWindow::MainWindow(QWidget *parent) :
     loadSettings();
 
     //initialization
-    player = new QMediaPlayer;
-    connect(player, SIGNAL(bufferStatusChanged(int)), this, SLOT(on_buffer_change(int)));
 
+    /* Initialize GStreamer */
+    gst_init (NULL, NULL);
 }
-
-void MainWindow::on_buffer_change(int value){
-    QString text;
-    text = QString("Incarc: %1%").arg(value);
-
-    if(value == 100)
-        text = "Playing";
-
-    if(playing)
-        ui->labelCurrentArtist->setText(text);
-}
-
 
 MainWindow::~MainWindow()
 {
@@ -65,21 +53,23 @@ void MainWindow::setShadow(QLabel *label, int offset, int blur){
 
 void MainWindow::on_buttonPlay_clicked()
 {
+
     playRadio(playing == true);
 }
 
 void MainWindow::playRadio(bool how){
-
     if(how){
         playing = false;
-        player->stop();
+        gst_element_set_state(gstream_main, GST_STATE_PAUSED);
         ui->labelCurrentArtist->setText("Apasa butonul play");
         ui->buttonPlay->setStyleSheet("QToolButton{border:none;padding:0px;margin:0px;background-image:url(:/images/play.png);}");
     }else{
         playing = true;
-        player->setMedia(QUrl("http://80.86.106.35:8032/"));
-        player->setVolume(settings->value("volume", 50).toInt());
-        player->play();
+
+        gstream_main = gst_parse_launch ("playbin2 uri=http://80.86.106.35/", NULL);
+        gst_element_set_state (gstream_main, GST_STATE_PLAYING);
+        on_sliderVolume_valueChanged(volume);
+        ui->labelCurrentArtist->setText("Playing");
         ui->buttonPlay->setStyleSheet("QToolButton{border:none;padding:0px;margin:0px;background-image:url(:/images/stop.png);}");
     }
 }
@@ -87,8 +77,17 @@ void MainWindow::playRadio(bool how){
 void MainWindow::on_sliderVolume_valueChanged(int value)
 {
     settings->setValue("volume", value);
-    if(playing)
-        player->setVolume(value);
+
+    double vol = value / 100.0;
+    vol *= vol * vol;
+
+    if(vol > 0.95)
+        vol = 1;
+
+    if(playing){
+        qDebug() << QString("%1").arg(vol);
+        g_object_set(gstream_main, "volume", vol, NULL);
+    }
 }
 
 void MainWindow::on_buttonLogo_clicked()

@@ -4,10 +4,11 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QGraphicsBlurEffect>
-#include <QtMultimedia/QMediaPlayer>
 #include <QDebug>
 #include <QSettings>
 #include <QDesktopServices>
+#include <QUrl>
+#include <gst/gst.h>
 
 
 namespace Ui {
@@ -29,8 +30,6 @@ private slots:
 
     void on_sliderVolume_valueChanged(int value);
 
-    void on_buffer_change(int value);
-
     void on_buttonLogo_clicked();
 
 private:
@@ -41,11 +40,13 @@ private:
     void loadSettings();
     void playRadio(bool how);
 
-    QMediaPlayer *player;
     bool playing;
     QString URL = "http://80.86.106.35:8032/";
     int volume;
     QSettings *settings;
+
+    GstElement *gstream_main;
+    GstBus *gstream_bus;
 };
 
 #endif // MAINWINDOW_H
