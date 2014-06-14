@@ -32,7 +32,7 @@ void MainWindow::on_buttonMenu_clicked()
 }
 
 void MainWindow::loadSettings(){
-
+    playing = false;
     playUrls[0] = "http://80.86.106.35:8032/"; //onefm
     playUrls[1] = "http://93.113.171.27:80/"; //onefm underground
     siteUrls[0] = "http://www.onefm.ro/";
@@ -42,11 +42,11 @@ void MainWindow::loadSettings(){
 
     volume = settings->value("volume", 50).toInt();
     current = settings->value("current", 0).toInt();
+    setRadio(current);
 
     //Qt::WindowFlags flags = Qt::CustomizeWindowHint;
     //setWindowFlags(flags);
 
-    playing = false;
 
     ui->sliderVolume->setValue(volume);
 }
