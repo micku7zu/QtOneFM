@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //qt5-default
     //gstreamer0.10-plugins-good
     //gstreamer0.10-plugins-bad
+    //libxcb
     //sudo apt-get install qt5-default gstreamer0.10-plugins-good gstreamer0.10-plugins-bad
 }
 
@@ -74,7 +75,6 @@ void MainWindow::playRadio(bool how){
         ui->labelCurrentArtist->setText("Apasa butonul play");
         ui->buttonPlay->setStyleSheet("QToolButton{border:none;padding:0px;margin:0px;background-image:url(:/images/play.png);}");
     }else{
-        gst_element_set_state(gstream_main, GST_STATE_PAUSED);
         playing = true;
         QString command = QString("playbin2 uri=%1").arg(playUrls[current]);
         gstream_main = gst_parse_launch (command.toStdString().c_str(), NULL);
@@ -106,8 +106,10 @@ void MainWindow::setRadio(int which){
                 QString("QToolButton{border: none;padding: 0px;margin: 0px;background-image:url(':/images/logo%1.png');}")
                 .arg((current+1)%2));
 
-    if(playing == true)
+    if(playing == true){
+        gst_element_set_state(gstream_main, GST_STATE_PAUSED);
         playRadio(false);
+    }
 }
 
 void MainWindow::on_buttonTopLogo_clicked()
