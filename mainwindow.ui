@@ -130,6 +130,9 @@ background-image:url(&quot;:/images/logo1.png&quot;);
       <height>16777215</height>
      </size>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
      <string notr="true">QToolButton{
 border: none;
@@ -162,6 +165,9 @@ background-image:url(&quot;:/images/up.png&quot;);
       <width>28</width>
       <height>16777215</height>
      </size>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">QToolButton{
@@ -386,6 +392,9 @@ background-image:url(:/images/star.png)
       <width>141</width>
       <height>141</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">padding:0px;

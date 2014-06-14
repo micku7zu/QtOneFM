@@ -87,19 +87,7 @@ void MainWindow::playRadio(bool how){
 
 void MainWindow::on_sliderVolume_valueChanged(int value)
 {
-    volume = value;
-    settings->setValue("volume", value);
-
-    double vol = value / 100.0;
-    vol *= vol * vol;
-
-    if(vol > 0.95)
-        vol = 1;
-
-    if(playing){
-        qDebug() << QString("%1").arg(vol);
-        g_object_set(gstream_main, "volume", vol, NULL);
-    }
+    setVolume(value);
 }
 
 void MainWindow::on_buttonLogo_clicked()
@@ -125,4 +113,36 @@ void MainWindow::setRadio(int which){
 void MainWindow::on_buttonTopLogo_clicked()
 {
     QDesktopServices::openUrl(siteUrls[current]);
+}
+
+void MainWindow::setVolume(int value){
+    if(value < 0)
+        value = 0;
+    if(value > 100)
+        value = 100;
+
+    volume = value;
+    settings->setValue("volume", value);
+    ui->sliderVolume->setValue(value);
+
+    double vol = value / 100.0;
+    vol *= vol * vol;
+
+    if(vol > 0.95)
+        vol = 1;
+
+    if(playing){
+        qDebug() << QString("%1").arg(vol);
+        g_object_set(gstream_main, "volume", vol, NULL);
+    }
+}
+
+void MainWindow::on_buttonVolumeDown_clicked()
+{
+    setVolume(volume-5);
+}
+
+void MainWindow::on_buttonVolumeUp_clicked()
+{
+    setVolume(volume+5);
 }

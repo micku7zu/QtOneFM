@@ -35,6 +35,10 @@ private slots:
 
     void on_buttonTopLogo_clicked();
 
+    void on_buttonVolumeDown_clicked();
+
+    void on_buttonVolumeUp_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -44,6 +48,7 @@ private:
     void setPlayButton();
     void loadSettings();
     void playRadio(bool how);
+    void setVolume(int value);
 
     bool playing;
     QString playUrls[2];
