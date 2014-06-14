@@ -32,7 +32,7 @@
    <string>OneFM</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="images.qrc">
+   <iconset>
     <normaloff>:/images/logo.png</normaloff>:/images/logo.png</iconset>
   </property>
   <property name="styleSheet">
@@ -102,7 +102,7 @@ QToolButton:hover{
 border: none;
 padding: 0px;
 margin: 0px;
-background-image:url(&quot;:/images/logo.png&quot;);
+background-image:url(&quot;:/images/logo1.png&quot;);
 }</string>
     </property>
     <property name="text">
@@ -244,7 +244,7 @@ height: 39px;
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image:url(:/images/center.png)</string>
+     <string notr="true">background-image:url(:/images/center0.png)</string>
     </property>
     <property name="text">
      <string/>
@@ -378,11 +378,28 @@ background-image:url(:/images/star.png)
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="buttonTopLogo">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>40</y>
+      <width>141</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">padding:0px;
+border:0px;
+background:none;
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="images.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

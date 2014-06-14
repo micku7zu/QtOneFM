@@ -8,6 +8,7 @@
 #include <QSettings>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QVector>
 #include <gst/gst.h>
 
 
@@ -32,8 +33,12 @@ private slots:
 
     void on_buttonLogo_clicked();
 
+    void on_buttonTopLogo_clicked();
+
 private:
     Ui::MainWindow *ui;
+
+    void setRadio(int which);
     void setEffects();
     void setShadow(QLabel *label, int offset, int blur);
     void setPlayButton();
@@ -41,7 +46,9 @@ private:
     void playRadio(bool how);
 
     bool playing;
-    QString URL = "http://80.86.106.35:8032/";
+    QString playUrls[2];
+    QString siteUrls[2];
+    int current; //current radio
     int volume;
     QSettings *settings;
 

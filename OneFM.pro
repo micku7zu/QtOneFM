@@ -19,8 +19,6 @@ HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
 
-OUTPUT += Console
-
 RESOURCES += \
     images.qrc
 

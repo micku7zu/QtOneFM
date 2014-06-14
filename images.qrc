@@ -6,12 +6,14 @@
         <file>images/up.png</file>
         <file>images/volume.png</file>
         <file>images/down.png</file>
-        <file>images/logo.png</file>
         <file>images/menu.png</file>
-        <file>images/center.png</file>
         <file>images/hand.png</file>
         <file>images/play.png</file>
         <file>images/stop.png</file>
         <file>images/star.png</file>
+        <file>images/center0.png</file>
+        <file>images/center1.png</file>
+        <file>images/logo0.png</file>
+        <file>images/logo1.png</file>
     </qresource>
 </RCC>

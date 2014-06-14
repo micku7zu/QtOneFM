@@ -14,6 +14,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     /* Initialize GStreamer */
     gst_init (NULL, NULL);
+
+    //qt5-default
+    //gstreamer0.10-plugins-good
+    //gstreamer0.10-plugins-bad
+    //sudo apt-get install qt5-default gstreamer0.10-plugins-good gstreamer0.10-plugins-bad
 }
 
 MainWindow::~MainWindow()
@@ -28,9 +33,15 @@ void MainWindow::on_buttonMenu_clicked()
 
 void MainWindow::loadSettings(){
 
+    playUrls[0] = "http://80.86.106.35:8032/"; //onefm
+    playUrls[1] = "http://93.113.171.27:80/"; //onefm underground
+    siteUrls[0] = "http://www.onefm.ro/";
+    siteUrls[1] = "http://www.oneundergroundradio.com/";
+
     settings = new QSettings("OneFM", "OneFM");
 
     volume = settings->value("volume", 50).toInt();
+    current = settings->value("current", 0).toInt();
 
     //Qt::WindowFlags flags = Qt::CustomizeWindowHint;
     //setWindowFlags(flags);
@@ -53,7 +64,6 @@ void MainWindow::setShadow(QLabel *label, int offset, int blur){
 
 void MainWindow::on_buttonPlay_clicked()
 {
-
     playRadio(playing == true);
 }
 
@@ -64,9 +74,10 @@ void MainWindow::playRadio(bool how){
         ui->labelCurrentArtist->setText("Apasa butonul play");
         ui->buttonPlay->setStyleSheet("QToolButton{border:none;padding:0px;margin:0px;background-image:url(:/images/play.png);}");
     }else{
+        gst_element_set_state(gstream_main, GST_STATE_PAUSED);
         playing = true;
-
-        gstream_main = gst_parse_launch ("playbin2 uri=http://80.86.106.35/", NULL);
+        QString command = QString("playbin2 uri=%1").arg(playUrls[current]);
+        gstream_main = gst_parse_launch (command.toStdString().c_str(), NULL);
         gst_element_set_state (gstream_main, GST_STATE_PLAYING);
         on_sliderVolume_valueChanged(volume);
         ui->labelCurrentArtist->setText("Playing");
@@ -76,6 +87,7 @@ void MainWindow::playRadio(bool how){
 
 void MainWindow::on_sliderVolume_valueChanged(int value)
 {
+    volume = value;
     settings->setValue("volume", value);
 
     double vol = value / 100.0;
@@ -92,5 +104,25 @@ void MainWindow::on_sliderVolume_valueChanged(int value)
 
 void MainWindow::on_buttonLogo_clicked()
 {
-    QDesktopServices::openUrl(QUrl("http://onefm.ro"));
+    current += 1;
+    current %= 2;
+
+    setRadio(current);
+}
+
+void MainWindow::setRadio(int which){
+    settings->setValue("current", which);
+
+    ui->labelCenter->setStyleSheet(QString("background-image:url(:/images/center%1.png)").arg(which));
+    ui->buttonLogo->setStyleSheet(
+                QString("QToolButton{border: none;padding: 0px;margin: 0px;background-image:url(':/images/logo%1.png');}")
+                .arg((current+1)%2));
+
+    if(playing == true)
+        playRadio(false);
+}
+
+void MainWindow::on_buttonTopLogo_clicked()
+{
+    QDesktopServices::openUrl(siteUrls[current]);
 }
