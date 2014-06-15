@@ -29,7 +29,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_buttonMenu_clicked()
 {
-    QMessageBox::information(this, "Meniu", "Test :D");
 }
 
 void MainWindow::loadSettings(){
@@ -68,8 +67,8 @@ void MainWindow::on_buttonPlay_clicked()
     playRadio(playing == true);
 }
 
-void MainWindow::playRadio(bool how){
-    if(how){
+void MainWindow::playRadio(bool isPlaying){
+    if(isPlaying){
         playing = false;
         gst_element_set_state(gstream_main, GST_STATE_PAUSED);
         ui->labelCurrentArtist->setText("Apasa butonul play");

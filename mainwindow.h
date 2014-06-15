@@ -47,7 +47,7 @@ private:
     void setShadow(QLabel *label, int offset, int blur);
     void setPlayButton();
     void loadSettings();
-    void playRadio(bool how);
+    void playRadio(bool isPlaying);
     void setVolume(int value);
 
     bool playing;
