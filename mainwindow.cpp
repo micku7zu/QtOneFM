@@ -64,11 +64,11 @@ void MainWindow::setShadow(QLabel *label, int offset, int blur){
 
 void MainWindow::on_buttonPlay_clicked()
 {
-    playRadio(playing == true);
+    playRadio(playing == false);
 }
 
-void MainWindow::playRadio(bool isPlaying){
-    if(isPlaying){
+void MainWindow::playRadio(bool how){
+    if(!how){
         playing = false;
         gst_element_set_state(gstream_main, GST_STATE_PAUSED);
         ui->labelCurrentArtist->setText("Apasa butonul play");
@@ -107,7 +107,7 @@ void MainWindow::setRadio(int which){
 
     if(playing == true){
         gst_element_set_state(gstream_main, GST_STATE_PAUSED);
-        playRadio(false);
+        playRadio(true);
     }
 }
 
