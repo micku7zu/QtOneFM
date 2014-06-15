@@ -82,6 +82,9 @@ void MainWindow::updateArtist()
         qDebug() << QString("Artist: %1").arg(artist);
         qDebug() << QString("Song: %1").arg(fullSong);
 
+        if(fullSong.length() <= 2)
+            return;
+
 
         ui->labelCurrentArtist->setText(artist);
         ui->labelCurrentSong->setText(fullSong);
@@ -115,7 +118,6 @@ QString MainWindow::getPage(QString site)
 
 void MainWindow::on_buttonMenu_clicked()
 {
-
 }
 
 void MainWindow::loadSettings(){
@@ -141,6 +143,25 @@ void MainWindow::loadSettings(){
 void MainWindow::setEffects(){
     setShadow(ui->labelCurrentArtist, 1, 3);
     setShadow(ui->labelCurrentSong, 1, 3);
+    ui->labelHand->setAttribute(Qt::WA_TransparentForMouseEvents);
+
+    //handMove
+    handMove = new QPropertyAnimation(ui->labelHand, "geometry");
+    handMove->setDuration(1300);
+    handMove->setKeyValueAt(0, QRect(170, 405, 73, 73));
+    handMove->setKeyValueAt(1, QRect(170, 465, 73, 73));
+    handMove->setEasingCurve(QEasingCurve::OutBounce);
+    handMove->setLoopCount(-1);
+    handMove->start();
+
+    //hand fade
+    QGraphicsOpacityEffect *handOpacity = new QGraphicsOpacityEffect;
+    handFade = new QPropertyAnimation(handOpacity, "opacity");
+    ui->labelHand->setGraphicsEffect(handOpacity);
+    handFade->setDuration(400);
+    handFade->setStartValue(1);
+    handFade->setEndValue(0);
+    handFade->setEasingCurve(QEasingCurve::InCubic);
 }
 
 void MainWindow::setShadow(QLabel *label, int offset, int blur){
@@ -161,6 +182,9 @@ void MainWindow::playRadio(bool how){
         ui->labelCurrentArtist->setText("Apasa butonul play");
         ui->buttonPlay->setStyleSheet("QToolButton{border:none;padding:0px;margin:0px;background-image:url(:/images/play-button.png);}");
         ui->labelHand->setVisible(true);
+        handMove->start();
+        ui->labelHand->graphicsEffect()->setProperty("opacity", 1);
+
         ui->labelCurrentSong->setText("");
 
         timer->stop();
@@ -172,7 +196,9 @@ void MainWindow::playRadio(bool how){
         playing = true;
         ui->labelCurrentArtist->setText("Playing");
         ui->buttonPlay->setStyleSheet("QToolButton{border:none;padding:0px;margin:0px;background-image:url(:/images/stop.png);}");
-        ui->labelHand->setVisible(false);
+        //ui->labelHand->setVisible(false);
+        handMove->stop();
+        handFade->start();
 
         //gstream
         QString command = QString("playbin2 uri=%1").arg(playUrls[current]);

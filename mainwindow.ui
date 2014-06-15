@@ -281,6 +281,9 @@ background-image:url(:/images/play-button.png)
     </property>
    </widget>
    <widget class="QLabel" name="labelHand">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>170</x>
@@ -288,6 +291,9 @@ background-image:url(:/images/play-button.png)
       <width>73</width>
       <height>73</height>
      </rect>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">QLabel{

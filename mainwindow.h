@@ -71,6 +71,9 @@ private:
     QSettings *settings;
     QTimer *timer;
 
+    QPropertyAnimation *handMove;
+    QPropertyAnimation *handFade;
+
     GStream gstream;
 };
 
