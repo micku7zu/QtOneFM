@@ -17,6 +17,8 @@ HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
 
+RC_ICONS = images/icon.ico
+
 RESOURCES += \
     images.qrc
 
