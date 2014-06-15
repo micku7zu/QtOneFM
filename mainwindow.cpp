@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //libxcb
     //sudo apt-get install qt5-default gstreamer0.10-plugins-good gstreamer0.10-plugins-bad
 
-
+    updateArtist();
 }
 
 MainWindow::~MainWindow()
@@ -36,43 +36,56 @@ void MainWindow::updateArtist()
 {
     qDebug() << "Timer function: ";
 
-    QString fullSong;
-    QString artist;
+    QString fullSong = QString("Unknown");
+    QString artist = QString("Unknown");
+
+    ui->labelCurrentArtist->setText(artist);
+    ui->labelCurrentSong->setText(fullSong);
 
     if(current == 0){
 
         QString page = getPage(siteUrls[0]);
 
         QStringList list = page.split("(");
+
+        if(list.size() < 2)
+            return;
         page = list.at(1);
         list = page.split(")");
         page = list.at(0);
-
         page.replace("				", "");
 
         list = page.split("artist : '");
+        if(list.size() < 2)
+            return;
+
         artist = list.at(1);
         list = artist.split("theTitle :");
         artist = list.at(0);
         artist.chop(3);
 
         list = page.split("theTitle : '");
+
+        if(list.size() < 2)
+            return;
+
         fullSong = list.at(1);
         fullSong.chop(3);
 
         list = fullSong.split(" - ");
+
+        if(list.size() < 2)
+            return;
         fullSong = list.at(1);
 
         qDebug() << QString("Page: %1").arg(page);
         qDebug() << QString("Artist: %1").arg(artist);
         qDebug() << QString("Song: %1").arg(fullSong);
-    }else{
-        artist = QString("unknown");
-        fullSong = QString("unknown");
-    }
 
-    ui->labelCurrentArtist->setText(artist);
-    ui->labelCurrentSong->setText(fullSong);
+
+        ui->labelCurrentArtist->setText(artist);
+        ui->labelCurrentSong->setText(fullSong);
+    }
 }
 
 QString MainWindow::getPage(QString site)
