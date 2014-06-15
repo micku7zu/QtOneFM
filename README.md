@@ -3,6 +3,8 @@ QtOneFM
 
 Cross-platform QT Radio applicaton for http://onefm.ro
 
+Early preview: https://drive.google.com/file/d/0BxktHhMrAobWYTY2NFFiUzFKZGc/edit?usp=sharing
+
 
 ## Compile on Linux
 
