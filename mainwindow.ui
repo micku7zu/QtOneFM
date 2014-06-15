@@ -89,7 +89,7 @@ QToolButton:hover{
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>530</y>
+      <y>270</y>
       <width>100</width>
       <height>100</height>
      </rect>
@@ -284,7 +284,7 @@ background-image:url(:/images/play-button.png)
     <property name="geometry">
      <rect>
       <x>170</x>
-      <y>380</y>
+      <y>465</y>
       <width>73</width>
       <height>73</height>
      </rect>
