@@ -21,3 +21,9 @@ then execute the following:
 then run the application:
 
     ./OneFM
+
+
+Compile on Windows
+==================
+
+Coming soon... Use Linux :) 
