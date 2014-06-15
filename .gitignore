@@ -20,5 +20,10 @@
 *.out
 *.app
 
+#QtCreator project files
+*.pro.user
+*.pro.user*
+*~
+
 *.pro.user
 OneFM.pro.user
