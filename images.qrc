@@ -1,19 +1,23 @@
 <RCC>
     <qresource prefix="/">
+        <file>images/acum-live.png</file>
         <file>images/background.png</file>
-        <file>images/refresh.png</file>
-        <file>images/slide.png</file>
-        <file>images/up.png</file>
-        <file>images/volume.png</file>
-        <file>images/down.png</file>
-        <file>images/menu.png</file>
+        <file>images/center-bg.png</file>
+        <file>images/close-icon.png</file>
         <file>images/hand.png</file>
-        <file>images/play.png</file>
-        <file>images/stop.png</file>
+        <file>images/hearth.png</file>
+        <file>images/logo-0.png</file>
+        <file>images/logo-1.png</file>
+        <file>images/logo-small-0.png</file>
+        <file>images/logo-small-1.png</file>
+        <file>images/menu-icon.png</file>
+        <file>images/minimize-icon.png</file>
+        <file>images/play-button.png</file>
         <file>images/star.png</file>
-        <file>images/center0.png</file>
-        <file>images/center1.png</file>
-        <file>images/logo0.png</file>
-        <file>images/logo1.png</file>
+        <file>images/stop.png</file>
+        <file>images/volume-controller.png</file>
+        <file>images/volume-grid.png</file>
+        <file>images/volume-icon-down.png</file>
+        <file>images/volume-icon-up.png</file>
     </qresource>
 </RCC>

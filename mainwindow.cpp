@@ -71,7 +71,7 @@ void MainWindow::playRadio(bool how){
     if(!how){
         playing = false;
         ui->labelCurrentArtist->setText("Apasa butonul play");
-        ui->buttonPlay->setStyleSheet("QToolButton{border:none;padding:0px;margin:0px;background-image:url(:/images/play.png);}");
+        ui->buttonPlay->setStyleSheet("QToolButton{border:none;padding:0px;margin:0px;background-image:url(:/images/play-button.png);}");
 
         gst_object_unref(gstream.bus);
         gst_element_set_state(gstream.pipeline, GST_STATE_NULL);
@@ -116,9 +116,11 @@ void MainWindow::on_buttonLogo_clicked()
 void MainWindow::setRadio(int which){
     settings->setValue("current", which);
 
-    ui->labelCenter->setStyleSheet(QString("background-image:url(:/images/center%1.png)").arg(which));
+    ui->buttonTopLogo->setStyleSheet(
+                QString("padding:0px;border:0px;background:url(:/images/logo-%1.png);")
+                .arg(current));
     ui->buttonLogo->setStyleSheet(
-                QString("QToolButton{border: none;padding: 0px;margin: 0px;background-image:url(':/images/logo%1.png');}")
+                QString("QToolButton{border: none;padding: 0px;margin: 0px;background-image:url(':/images/logo-small-%1.png');}")
                 .arg((current+1)%2));
 
     if(playing == true){
