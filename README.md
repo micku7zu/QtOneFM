@@ -12,6 +12,7 @@ You must have the required packages for Qt5 development and gstreamer 0.10, for 
     sudo apt-get install qt5-default gstreamer0.10-plugins-good gstreamer0.10-plugins-bad
     
 for Arch:
+
     sudo pacman -S qt5-base gstreamer0.10-good-plugins gstreamer0.10-bad-plugins
 
 then execute the following:
