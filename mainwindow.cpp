@@ -148,8 +148,8 @@ void MainWindow::setEffects(){
     //handMove
     handMove = new QPropertyAnimation(ui->labelHand, "geometry");
     handMove->setDuration(1300);
-    handMove->setKeyValueAt(0, QRect(170, 405, 73, 73));
-    handMove->setKeyValueAt(1, QRect(170, 465, 73, 73));
+    handMove->setKeyValueAt(0, QRect(170, 360, 73, 73));
+    handMove->setKeyValueAt(1, QRect(170, 390, 73, 73));
     handMove->setEasingCurve(QEasingCurve::OutBounce);
     handMove->setLoopCount(-1);
     handMove->start();
@@ -307,5 +307,4 @@ void MainWindow::gstreamSignal(GstBus *bus, GstMessage *msg, MainWindow *w) {
         break;
     }
 }
-
 
