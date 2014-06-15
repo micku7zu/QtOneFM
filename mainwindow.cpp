@@ -70,17 +70,33 @@ void MainWindow::on_buttonPlay_clicked()
 void MainWindow::playRadio(bool how){
     if(!how){
         playing = false;
-        gst_element_set_state(gstream_main, GST_STATE_PAUSED);
         ui->labelCurrentArtist->setText("Apasa butonul play");
         ui->buttonPlay->setStyleSheet("QToolButton{border:none;padding:0px;margin:0px;background-image:url(:/images/play.png);}");
+
+        gst_object_unref(gstream.bus);
+        gst_element_set_state(gstream.pipeline, GST_STATE_NULL);
+        gst_object_unref(gstream.pipeline);
     }else{
         playing = true;
-        QString command = QString("playbin2 uri=%1").arg(playUrls[current]);
-        gstream_main = gst_parse_launch (command.toStdString().c_str(), NULL);
-        gst_element_set_state (gstream_main, GST_STATE_PLAYING);
-        on_sliderVolume_valueChanged(volume);
         ui->labelCurrentArtist->setText("Playing");
         ui->buttonPlay->setStyleSheet("QToolButton{border:none;padding:0px;margin:0px;background-image:url(:/images/stop.png);}");
+
+        //gstream
+        QString command = QString("playbin2 uri=%1").arg(playUrls[current]);
+        gstream.pipeline = gst_parse_launch (command.toStdString().c_str(), NULL);
+        on_sliderVolume_valueChanged(volume);
+
+        gstream.bus = gst_element_get_bus (gstream.pipeline);
+
+        gst_element_set_state (gstream.pipeline, GST_STATE_PLAYING);
+        GstStateChangeReturn ret = gst_element_set_state (gstream.pipeline, GST_STATE_PLAYING);
+        if (ret == GST_STATE_CHANGE_FAILURE) {
+            qDebug() << "Eroare la gstream.";
+            gst_object_unref(gstream.pipeline);
+        }
+
+        gst_bus_add_signal_watch(gstream.bus);
+        g_signal_connect (gstream.bus, "message", G_CALLBACK (gstreamSignal), ui);
     }
 }
 
@@ -106,7 +122,7 @@ void MainWindow::setRadio(int which){
                 .arg((current+1)%2));
 
     if(playing == true){
-        gst_element_set_state(gstream_main, GST_STATE_PAUSED);
+        playRadio(false);
         playRadio(true);
     }
 }
@@ -133,8 +149,7 @@ void MainWindow::setVolume(int value){
         vol = 1;
 
     if(playing){
-        qDebug() << QString("%1").arg(vol);
-        g_object_set(gstream_main, "volume", vol, NULL);
+        g_object_set(gstream.pipeline, "volume", vol, NULL);
     }
 }
 
@@ -146,4 +161,23 @@ void MainWindow::on_buttonVolumeDown_clicked()
 void MainWindow::on_buttonVolumeUp_clicked()
 {
     setVolume(volume+5);
+}
+
+void MainWindow::gstreamSignal(GstBus *bus, GstMessage *msg, Ui::MainWindow *localUi) {
+    switch (GST_MESSAGE_TYPE (msg)) {
+        case GST_MESSAGE_ERROR: {
+            localUi->labelCurrentArtist->setText("Error.");
+            break;
+        }
+        case GST_MESSAGE_BUFFERING: {
+            gint percent = 0;
+
+            gst_message_parse_buffering (msg, &percent);
+            localUi->labelCurrentArtist->setText(QString("Buffering: %1%").arg(percent));
+            break;
+        }
+        default:
+            /* Unhandled message */
+        break;
+    }
 }

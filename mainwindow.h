@@ -11,6 +11,10 @@
 #include <QVector>
 #include <gst/gst.h>
 
+typedef struct _gstream {
+    GstElement *pipeline;
+    GstBus *bus;
+} GStream;
 
 namespace Ui {
 class MainWindow;
@@ -39,6 +43,7 @@ private slots:
 
     void on_buttonVolumeUp_clicked();
 
+
 private:
     Ui::MainWindow *ui;
 
@@ -49,6 +54,7 @@ private:
     void loadSettings();
     void playRadio(bool how);
     void setVolume(int value);
+    static void gstreamSignal(GstBus *bus, GstMessage *msg, Ui::MainWindow *localUi);
 
     bool playing;
     QString playUrls[2];
@@ -57,8 +63,7 @@ private:
     int volume;
     QSettings *settings;
 
-    GstElement *gstream_main;
-    GstBus *gstream_bus;
+    GStream gstream;
 };
 
 #endif // MAINWINDOW_H
