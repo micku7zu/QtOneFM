@@ -9,7 +9,11 @@
 #include <QDesktopServices>
 #include <QUrl>
 #include <QVector>
+#include <QtNetwork>
+#include <QUrl>
+#include <QTimer>
 #include <gst/gst.h>
+
 
 typedef struct _gstream {
     GstElement *pipeline;
@@ -43,6 +47,8 @@ private slots:
 
     void on_buttonVolumeUp_clicked();
 
+    void updateArtist();
+
 
 private:
     Ui::MainWindow *ui;
@@ -54,7 +60,8 @@ private:
     void loadSettings();
     void playRadio(bool how);
     void setVolume(int value);
-    static void gstreamSignal(GstBus *bus, GstMessage *msg, Ui::MainWindow *localUi);
+    QString getPage(QString url);
+    static void gstreamSignal(GstBus *bus, GstMessage *msg, MainWindow *w);
 
     bool playing;
     QString playUrls[2];
@@ -62,6 +69,7 @@ private:
     int current; //current radio
     int volume;
     QSettings *settings;
+    QTimer *timer;
 
     GStream gstream;
 };

@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
     loadSettings();
 
     //initialization
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(updateArtist()));
 
     /* Initialize GStreamer */
     gst_init (NULL, NULL);
@@ -21,6 +23,8 @@ MainWindow::MainWindow(QWidget *parent) :
     //gstreamer0.10-plugins-bad
     //libxcb
     //sudo apt-get install qt5-default gstreamer0.10-plugins-good gstreamer0.10-plugins-bad
+
+
 }
 
 MainWindow::~MainWindow()
@@ -28,8 +32,68 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::updateArtist()
+{
+    qDebug() << "Timer function: ";
+
+    QString page = getPage(siteUrls[0]);
+
+    QStringList list = page.split("(");
+    page = list.at(1);
+    list = page.split(")");
+    page = list.at(0);
+
+    page.replace("				", "");
+
+    list = page.split("artist : '");
+    QString artist = list.at(1);
+    list = artist.split("theTitle :");
+    artist = list.at(0);
+    artist.chop(3);
+
+    list = page.split("theTitle : '");
+    QString fullSong = list.at(1);
+    fullSong.chop(3);
+
+    list = fullSong.split(" - ");
+    fullSong = list.at(1);
+
+    qDebug() << QString("Page: %1").arg(page);
+    qDebug() << QString("Artist: %1").arg(artist);
+    qDebug() << QString("Song: %1").arg(fullSong);
+
+    ui->labelCurrentArtist->setText(artist);
+    ui->labelCurrentSong->setText(fullSong);
+}
+
+QString MainWindow::getPage(QString site)
+{
+    QEventLoop eventLoop;
+
+    QNetworkAccessManager mgr;
+    QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
+
+   // QNetworkRequest req( QUrl( QString(site.toStdString().c_str()) ) );
+    QNetworkRequest req(QUrl(QString("http://www.onefm.ro/nowplaying.php")));
+
+    QNetworkReply *reply = mgr.get(req);
+    eventLoop.exec();
+
+    if (reply->error() == QNetworkReply::NoError) {
+        QString ret = QString(reply->readAll());
+        delete reply;
+        return ret;
+    }
+    else {
+        QString ret = QString(reply->errorString());
+        delete reply;
+        return ret;
+    }
+}
+
 void MainWindow::on_buttonMenu_clicked()
 {
+
 }
 
 void MainWindow::loadSettings(){
@@ -54,6 +118,7 @@ void MainWindow::loadSettings(){
 
 void MainWindow::setEffects(){
     setShadow(ui->labelCurrentArtist, 1, 3);
+    setShadow(ui->labelCurrentSong, 1, 3);
 }
 
 void MainWindow::setShadow(QLabel *label, int offset, int blur){
@@ -73,6 +138,10 @@ void MainWindow::playRadio(bool how){
         playing = false;
         ui->labelCurrentArtist->setText("Apasa butonul play");
         ui->buttonPlay->setStyleSheet("QToolButton{border:none;padding:0px;margin:0px;background-image:url(:/images/play-button.png);}");
+        ui->labelHand->setVisible(true);
+        ui->labelCurrentSong->setText("");
+
+        timer->stop();
 
         gst_object_unref(gstream.bus);
         gst_element_set_state(gstream.pipeline, GST_STATE_NULL);
@@ -81,6 +150,7 @@ void MainWindow::playRadio(bool how){
         playing = true;
         ui->labelCurrentArtist->setText("Playing");
         ui->buttonPlay->setStyleSheet("QToolButton{border:none;padding:0px;margin:0px;background-image:url(:/images/stop.png);}");
+        ui->labelHand->setVisible(false);
 
         //gstream
         QString command = QString("playbin2 uri=%1").arg(playUrls[current]);
@@ -97,7 +167,7 @@ void MainWindow::playRadio(bool how){
         }
 
         gst_bus_add_signal_watch(gstream.bus);
-        g_signal_connect (gstream.bus, "message", G_CALLBACK (gstreamSignal), ui);
+        g_signal_connect (gstream.bus, "message", G_CALLBACK (gstreamSignal), this);
     }
 }
 
@@ -166,17 +236,22 @@ void MainWindow::on_buttonVolumeUp_clicked()
     setVolume(volume+5);
 }
 
-void MainWindow::gstreamSignal(GstBus *bus, GstMessage *msg, Ui::MainWindow *localUi) {
+void MainWindow::gstreamSignal(GstBus *bus, GstMessage *msg, MainWindow *w) {
     switch (GST_MESSAGE_TYPE (msg)) {
         case GST_MESSAGE_ERROR: {
-            localUi->labelCurrentArtist->setText("Error.");
+            w->ui->labelCurrentArtist->setText("Error.");
             break;
         }
         case GST_MESSAGE_BUFFERING: {
             gint percent = 0;
 
             gst_message_parse_buffering (msg, &percent);
-            localUi->labelCurrentArtist->setText(QString("Buffering: %1%").arg(percent));
+            w->ui->labelCurrentArtist->setText(QString("Buffering: %1%").arg(percent));
+
+            if(percent == 100){
+                w->updateArtist();
+                w->timer->start(1000 * 30);
+            }
             break;
         }
         default:
@@ -184,3 +259,5 @@ void MainWindow::gstreamSignal(GstBus *bus, GstMessage *msg, Ui::MainWindow *loc
         break;
     }
 }
+
+
