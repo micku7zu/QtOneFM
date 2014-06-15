@@ -1,2 +1,2 @@
-Sergiu Sandor
-Iulian Calin
+Sergiu Sandor - C++ Developer
+Halcea iulian calin - Designer
