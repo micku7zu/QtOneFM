@@ -24,7 +24,6 @@ MainWindow::MainWindow(QWidget *parent) :
     //libxcb
     //sudo apt-get install qt5-default gstreamer0.10-plugins-good gstreamer0.10-plugins-bad
 
-    updateArtist();
 }
 
 MainWindow::~MainWindow()
@@ -50,6 +49,7 @@ void MainWindow::updateArtist()
 
         if(list.size() < 2)
             return;
+
         page = list.at(1);
         list = page.split(")");
         page = list.at(0);
