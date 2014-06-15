@@ -36,31 +36,40 @@ void MainWindow::updateArtist()
 {
     qDebug() << "Timer function: ";
 
-    QString page = getPage(siteUrls[0]);
+    QString fullSong;
+    QString artist;
 
-    QStringList list = page.split("(");
-    page = list.at(1);
-    list = page.split(")");
-    page = list.at(0);
+    if(current == 0){
 
-    page.replace("				", "");
+        QString page = getPage(siteUrls[0]);
 
-    list = page.split("artist : '");
-    QString artist = list.at(1);
-    list = artist.split("theTitle :");
-    artist = list.at(0);
-    artist.chop(3);
+        QStringList list = page.split("(");
+        page = list.at(1);
+        list = page.split(")");
+        page = list.at(0);
 
-    list = page.split("theTitle : '");
-    QString fullSong = list.at(1);
-    fullSong.chop(3);
+        page.replace("				", "");
 
-    list = fullSong.split(" - ");
-    fullSong = list.at(1);
+        list = page.split("artist : '");
+        artist = list.at(1);
+        list = artist.split("theTitle :");
+        artist = list.at(0);
+        artist.chop(3);
 
-    qDebug() << QString("Page: %1").arg(page);
-    qDebug() << QString("Artist: %1").arg(artist);
-    qDebug() << QString("Song: %1").arg(fullSong);
+        list = page.split("theTitle : '");
+        fullSong = list.at(1);
+        fullSong.chop(3);
+
+        list = fullSong.split(" - ");
+        fullSong = list.at(1);
+
+        qDebug() << QString("Page: %1").arg(page);
+        qDebug() << QString("Artist: %1").arg(artist);
+        qDebug() << QString("Song: %1").arg(fullSong);
+    }else{
+        artist = QString("unknown");
+        fullSong = QString("unknown");
+    }
 
     ui->labelCurrentArtist->setText(artist);
     ui->labelCurrentSong->setText(fullSong);

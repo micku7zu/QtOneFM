@@ -10,7 +10,7 @@ Compile on Linux
 
 You must have the required packages for Qt5 development and gstreamer 0.10, for Ubuntu and other distros based on Ubuntu:
 
-    sudo apt-get install git qt5-default gstreamer0.10-plugins-good gstreamer0.10-plugins-bad
+    sudo apt-get install build-essential git qt5-default gstreamer0.10-plugins-good gstreamer0.10-plugins-bad
     
 for Arch:
 
