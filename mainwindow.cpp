@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QSystemTrayIcon>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -23,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //gstreamer0.10-plugins-bad
     //libxcb
     //sudo apt-get install qt5-default gstreamer0.10-plugins-good gstreamer0.10-plugins-bad
+
 
 }
 
@@ -118,6 +121,21 @@ QString MainWindow::getPage(QString site)
 
 void MainWindow::on_buttonMenu_clicked()
 {
+    /*
+    QSet<QWidget*> beforeWidgets = QApplication::topLevelWidgets().toSet();
+    QSystemTrayIcon *systemTrayIcon = new QSystemTrayIcon(this);
+    systemTrayIcon->setIcon(QIcon(":/images/logo-0.png"));
+    systemTrayIcon->show();
+    QSet<QWidget*> postWidgets = QApplication::topLevelWidgets().toSet();
+    postWidgets -= beforeWidgets;
+    if( !postWidgets.isEmpty() )
+    {
+         QWidget* sysWidget = (*postWidgets.begin());
+         sysWidget->setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::SplashScreen );
+         //sysWidget->setGeometry(500, 500, 100, 100);
+         sysWidget->show();
+    }
+    */
 }
 
 void MainWindow::loadSettings(){

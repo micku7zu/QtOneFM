@@ -12,6 +12,7 @@
 #include <QtNetwork>
 #include <QUrl>
 #include <QTimer>
+#include <QSystemTrayIcon>
 #include <gst/gst.h>
 
 
@@ -75,6 +76,7 @@ private:
     QPropertyAnimation *handFade;
 
     GStream gstream;
+
 };
 
 #endif // MAINWINDOW_H
