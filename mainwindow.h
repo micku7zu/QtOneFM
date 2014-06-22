@@ -50,6 +50,11 @@ private slots:
 
     void updateArtist();
 
+    void on_checkBoxTitleBar_toggled(bool checked);
+
+    void on_buttonClose_clicked();
+
+    void on_buttonMinimize_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -69,11 +74,13 @@ private:
     QString siteUrls[2];
     int current; //current radio
     int volume;
+    bool systemTitle;
     QSettings *settings;
     QTimer *timer;
 
     QPropertyAnimation *handMove;
     QPropertyAnimation *handFade;
+    QPropertyAnimation *menuFade;
 
     GStream gstream;
 

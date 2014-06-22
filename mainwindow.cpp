@@ -10,8 +10,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowIcon(QIcon(":/images/logo-0.png"));
 
-    setEffects();
     loadSettings();
+    setEffects();
 
     //initialization
     timer = new QTimer(this);
@@ -25,8 +25,6 @@ MainWindow::MainWindow(QWidget *parent) :
     //gstreamer0.10-plugins-bad
     //libxcb
     //sudo apt-get install qt5-default gstreamer0.10-plugins-good gstreamer0.10-plugins-bad
-
-
 }
 
 MainWindow::~MainWindow()
@@ -121,21 +119,18 @@ QString MainWindow::getPage(QString site)
 
 void MainWindow::on_buttonMenu_clicked()
 {
-    /*
-    QSet<QWidget*> beforeWidgets = QApplication::topLevelWidgets().toSet();
-    QSystemTrayIcon *systemTrayIcon = new QSystemTrayIcon(this);
-    systemTrayIcon->setIcon(QIcon(":/images/logo-0.png"));
-    systemTrayIcon->show();
-    QSet<QWidget*> postWidgets = QApplication::topLevelWidgets().toSet();
-    postWidgets -= beforeWidgets;
-    if( !postWidgets.isEmpty() )
-    {
-         QWidget* sysWidget = (*postWidgets.begin());
-         sysWidget->setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::SplashScreen );
-         //sysWidget->setGeometry(500, 500, 100, 100);
-         sysWidget->show();
+    int val = menuFade->currentValue().toInt();
+
+    if(val == 0){
+        ui->widgetMenu->setAttribute(Qt::WA_TransparentForMouseEvents, false);
+    }else{
+        ui->widgetMenu->setAttribute(Qt::WA_TransparentForMouseEvents);
     }
-    */
+
+    menuFade->setStartValue(val);
+    menuFade->setEndValue((val+1)%2);
+    menuFade->start();
+
 }
 
 void MainWindow::loadSettings(){
@@ -147,12 +142,19 @@ void MainWindow::loadSettings(){
 
     settings = new QSettings("OneFM", "OneFM");
 
+    systemTitle = settings->value("systemTitle", true).toBool();
+    ui->checkBoxTitleBar->setChecked(systemTitle);
+    if(!systemTitle){
+        this->setWindowFlags(Qt::CustomizeWindowHint);
+    }else{
+        ui->buttonMinimize->setVisible(false);
+        ui->buttonClose->setVisible(false);
+    }
+
     volume = settings->value("volume", 50).toInt();
     current = settings->value("current", 0).toInt();
     setRadio(current);
 
-    //Qt::WindowFlags flags = Qt::CustomizeWindowHint;
-    //setWindowFlags(flags);
 
 
     ui->sliderVolume->setValue(volume);
@@ -162,6 +164,16 @@ void MainWindow::setEffects(){
     setShadow(ui->labelCurrentArtist, 1, 3);
     setShadow(ui->labelCurrentSong, 1, 3);
     ui->labelHand->setAttribute(Qt::WA_TransparentForMouseEvents);
+
+    QGraphicsOpacityEffect *menuOpacity = new QGraphicsOpacityEffect;
+    menuFade = new QPropertyAnimation(menuOpacity, "opacity");
+    menuOpacity->setOpacity(0);
+    ui->widgetMenu->setAttribute(Qt::WA_TransparentForMouseEvents);
+    ui->widgetMenu->setGraphicsEffect(menuOpacity);
+    menuFade->setDuration(400);
+    menuFade->setStartValue(0);
+    menuFade->setEndValue(1);
+    menuFade->setEasingCurve(QEasingCurve::InCubic);
 
     //handMove
     handMove = new QPropertyAnimation(ui->labelHand, "geometry");
@@ -326,3 +338,27 @@ void MainWindow::gstreamSignal(GstBus *bus, GstMessage *msg, MainWindow *w) {
     }
 }
 
+
+void MainWindow::on_checkBoxTitleBar_toggled(bool checked)
+{
+    settings->setValue("systemTitle", checked);
+    ui->buttonMinimize->setVisible(!checked);
+    ui->buttonClose->setVisible(!checked);
+
+    if(!checked){
+        this->setWindowFlags(Qt::CustomizeWindowHint);
+    }else{
+        this->setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint);
+    }
+    this->showNormal();
+}
+
+void MainWindow::on_buttonClose_clicked()
+{
+    qApp->quit();
+}
+
+void MainWindow::on_buttonMinimize_clicked()
+{
+    this->setWindowState(Qt::WindowMinimized);
+}

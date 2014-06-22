@@ -464,6 +464,77 @@ color:white;
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QWidget" name="widgetMenu" native="true">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>50</y>
+      <width>311</width>
+      <height>411</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius:10px;
+background:#f3efe6;</string>
+    </property>
+    <widget class="QCheckBox" name="checkBoxTitleBar">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>151</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Use system title bar</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QToolButton" name="buttonClose">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>24</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">width:24px;
+height:24px;
+border:none;
+background-image:url(:/images/close-icon.png)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="buttonMinimize">
+    <property name="geometry">
+     <rect>
+      <x>24</x>
+      <y>0</y>
+      <width>24</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">width:24px;
+height:24px;
+border:none;
+background-image: url(:/images/minimize-icon.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
