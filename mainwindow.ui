@@ -287,7 +287,7 @@ background-image:url(:/images/play-button.png)
     <property name="geometry">
      <rect>
       <x>170</x>
-      <y>465</y>
+      <y>360</y>
       <width>73</width>
       <height>73</height>
      </rect>
@@ -467,21 +467,22 @@ color:white;
    <widget class="QWidget" name="widgetMenu" native="true">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>50</y>
-      <width>311</width>
-      <height>411</height>
+      <x>107</x>
+      <y>20</y>
+      <width>321</width>
+      <height>451</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-radius:10px;
-background:#f3efe6;</string>
+     <string notr="true">background:url(:/images/menu-bg.png);
+background-position:top left;
+background-repeat:no-repeat;</string>
     </property>
     <widget class="QCheckBox" name="checkBoxTitleBar">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>10</y>
+       <y>50</y>
        <width>291</width>
        <height>30</height>
       </rect>
@@ -525,7 +526,7 @@ background:#f3efe6;</string>
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>50</y>
+       <y>90</y>
        <width>291</width>
        <height>30</height>
       </rect>
@@ -580,10 +581,18 @@ background:#f3efe6;</string>
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">width:24px;
+     <string notr="true">QToolButton{
+width:24p;
 height:24px;
-border:none;
-background-image:url(:/images/close-icon.png)</string>
+border: none;
+margin: 0px;
+padding: 0px;
+background-image: url(:/images/close-icon.png)
+}
+
+QToolButton:hover{
+background-image: url(:/images/close-icon-hover.png)
+}</string>
     </property>
     <property name="text">
      <string/>
@@ -602,15 +611,40 @@ background-image:url(:/images/close-icon.png)</string>
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">width:24px;
+     <string notr="true">QToolButton{
+width:24p;
 height:24px;
-border:none;
-background-image: url(:/images/minimize-icon.png);</string>
+border: none;
+margin: 0px;
+padding: 0px;
+background-image: url(:/images/minimize-icon.png)
+}
+
+QToolButton:hover{
+background-image: url(:/images/minimize-icon-hover.png)
+}</string>
     </property>
     <property name="text">
      <string/>
     </property>
    </widget>
+   <zorder>buttonLogo</zorder>
+   <zorder>buttonVolumeUp</zorder>
+   <zorder>buttonVolumeDown</zorder>
+   <zorder>sliderVolume</zorder>
+   <zorder>labelCenter</zorder>
+   <zorder>buttonPlay</zorder>
+   <zorder>labelHand</zorder>
+   <zorder>labelCurrentArtist</zorder>
+   <zorder>buttonStar</zorder>
+   <zorder>buttonTopLogo</zorder>
+   <zorder>labelLive</zorder>
+   <zorder>labelHearth</zorder>
+   <zorder>labelCurrentSong</zorder>
+   <zorder>widgetMenu</zorder>
+   <zorder>buttonClose</zorder>
+   <zorder>buttonMinimize</zorder>
+   <zorder>buttonMenu</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

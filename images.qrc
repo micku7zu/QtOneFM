@@ -21,5 +21,8 @@
         <file>images/volume-icon-up.png</file>
         <file>images/checkbox_checked.png</file>
         <file>images/checkbox_unchecked.png</file>
+        <file>images/minimize-icon-hover.png</file>
+        <file>images/close-icon-hover.png</file>
+        <file>images/menu-bg.png</file>
     </qresource>
 </RCC>
