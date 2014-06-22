@@ -16,8 +16,9 @@ You must have the required packages for Qt5 development and gstreamer 0.10, for 
 ```sh
 sudo apt-get install build-essential git qt5-default gstreamer0.10-plugins-good gstreamer0.10-plugins-bad
 ```
-
+If for some reason GStreamer is not found you will probably need to install libgstreamer0.10-dev (Had this issue in Ubuntu 14.04)
 for Arch:
+
 
 ```sh
 sudo pacman -S git qt5-base gstreamer0.10-good-plugins gstreamer0.10-bad-plugins
