@@ -19,5 +19,7 @@
         <file>images/volume-grid.png</file>
         <file>images/volume-icon-down.png</file>
         <file>images/volume-icon-up.png</file>
+        <file>images/checkbox_checked.png</file>
+        <file>images/checkbox_unchecked.png</file>
     </qresource>
 </RCC>

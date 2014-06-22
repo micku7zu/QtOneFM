@@ -482,12 +482,88 @@ background:#f3efe6;</string>
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>151</width>
-       <height>21</height>
+       <width>291</width>
+       <height>30</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>URW Gothic L</family>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> QCheckBox {
+     spacing: 5px;
+ }
+
+ QCheckBox::indicator {
+     width: 67px;
+     height: 30px;
+ }
+
+ QCheckBox::indicator:unchecked {
+     image: url(:/images/checkbox_unchecked.png);
+ }
+
+ QCheckBox::indicator:checked {
+     image: url(:/images/checkbox_checked.png);
+ }
+</string>
      </property>
      <property name="text">
       <string>Use system title bar</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkboxTest">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>291</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>URW Gothic L</family>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"> QCheckBox {
+     spacing: 5px;
+ }
+
+ QCheckBox::indicator {
+     width: 67px;
+     height: 30px;
+ }
+
+ QCheckBox::indicator:unchecked {
+     image: url(:/images/checkbox_unchecked.png);
+ }
+
+ QCheckBox::indicator:checked {
+     image: url(:/images/checkbox_checked.png);
+ }
+
+</string>
+     </property>
+     <property name="text">
+      <string>Another checkbox to test</string>
      </property>
     </widget>
    </widget>
