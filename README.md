@@ -14,9 +14,8 @@ Compiled 64 bit preview: https://github.com/micku7zu/QtOneFM/releases
 You must have the required packages for Qt5 development and gstreamer 0.10, for Ubuntu and other distros based on Ubuntu:
 
 ```sh
-sudo apt-get install build-essential git qt5-default gstreamer0.10-plugins-good gstreamer0.10-plugins-bad 
+sudo apt-get install build-essential git qt5-default gstreamer0.10-plugins-good gstreamer0.10-plugins-bad libgstreamer0.10-dev
 ```
-(maybe you need libgstreamer0.10-dev too)
 
 for Arch:
 
