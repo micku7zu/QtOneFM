@@ -13,6 +13,9 @@
 #include <QUrl>
 #include <QTimer>
 #include <QSystemTrayIcon>
+#include <QWidget>
+#include <QMouseEvent>
+#include <QPoint>
 #include <gst/gst.h>
 
 
@@ -77,6 +80,9 @@ private:
     bool systemTitle;
     QSettings *settings;
     QTimer *timer;
+    bool isMouseDown = false;
+    int iXdeffarace = -1;
+    int iYdeffarance = -1;
 
     QPropertyAnimation *handMove;
     QPropertyAnimation *handFade;
@@ -84,6 +90,11 @@ private:
 
     GStream gstream;
 
+protected:
+    void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
+    QPoint mousePoint;
 };
 
 #endif // MAINWINDOW_H

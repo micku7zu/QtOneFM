@@ -469,21 +469,23 @@ color:white;
      <rect>
       <x>107</x>
       <y>20</y>
-      <width>321</width>
-      <height>451</height>
+      <width>311</width>
+      <height>441</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background:url(:/images/menu-bg.png);
-background-position:top left;
-background-repeat:no-repeat;</string>
+     <string notr="true">border: none;
+margin: 0px;
+padding: 0px;
+background-image: url(:/images/menu-bg.png);
+background-position:top left;</string>
     </property>
     <widget class="QCheckBox" name="checkBoxTitleBar">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>50</y>
-       <width>291</width>
+       <width>281</width>
        <height>30</height>
       </rect>
      </property>
@@ -525,9 +527,9 @@ background-repeat:no-repeat;</string>
     <widget class="QCheckBox" name="checkboxTest">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>90</y>
-       <width>291</width>
+       <width>281</width>
        <height>30</height>
       </rect>
      </property>
@@ -582,9 +584,9 @@ background-repeat:no-repeat;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">QToolButton{
-width:24p;
-height:24px;
 border: none;
+width:24px;
+height:24px;
 margin: 0px;
 padding: 0px;
 background-image: url(:/images/close-icon.png)
@@ -612,9 +614,9 @@ background-image: url(:/images/close-icon-hover.png)
     </property>
     <property name="styleSheet">
      <string notr="true">QToolButton{
-width:24p;
-height:24px;
 border: none;
+width:24px;
+height:24px;
 margin: 0px;
 padding: 0px;
 background-image: url(:/images/minimize-icon.png)

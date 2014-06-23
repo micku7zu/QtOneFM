@@ -338,6 +338,32 @@ void MainWindow::gstreamSignal(GstBus *bus, GstMessage *msg, MainWindow *w) {
     }
 }
 
+void MainWindow::mousePressEvent(QMouseEvent *event)
+{
+    if(event->button() == Qt::LeftButton){
+        isMouseDown = true;
+        QPoint qpMousePressedPoint = QCursor::pos();
+        QPoint qpApploc = this->pos();
+        iXdeffarace = qpMousePressedPoint.x() - qpApploc.x();
+        iYdeffarance = qpMousePressedPoint.y() - qpApploc.y();
+    }
+
+}
+
+void MainWindow::mouseReleaseEvent(QMouseEvent *event)
+{
+    isMouseDown = false;
+}
+
+void MainWindow::mouseMoveEvent(QMouseEvent *event)
+{
+    if(isMouseDown == true){
+        QPoint qpAppNewLoc( (QCursor::pos().x() - iXdeffarace) , (QCursor::pos().y() - iYdeffarance) );
+        this->setProperty("pos", qpAppNewLoc);
+        }
+}
+
+
 
 void MainWindow::on_checkBoxTitleBar_toggled(bool checked)
 {
