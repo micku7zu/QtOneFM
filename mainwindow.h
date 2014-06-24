@@ -60,6 +60,8 @@ private slots:
     void on_buttonMinimize_clicked();
 
 
+    void on_toolButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 

@@ -393,3 +393,8 @@ void MainWindow::on_buttonMinimize_clicked()
     this->setWindowState(Qt::WindowMinimized);
 }
 
+
+void MainWindow::on_toolButton_clicked()
+{
+    QDesktopServices::openUrl(QUrl("http://www.ubuntu.com/desktop"));
+}
