@@ -34,11 +34,19 @@ void GstreamerRadio::play(QString url)
     g_signal_connect (gstream.bus, "message", G_CALLBACK (gstreamSignal), this);
 }
 
-void GstreamerRadio::setVolume(double volume){
-    g_object_set(gstream.pipeline, "volume", volume, NULL);
+void GstreamerRadio::setVolume(int volume)
+{
+    double vol = volume / 100.0;
+    vol *= vol * vol;
+
+    if(vol > 0.95)
+        vol = 1;
+
+    g_object_set(gstream.pipeline, "volume", vol, NULL);
 }
 
-void GstreamerRadio::gstreamSignal(GstBus *bus, GstMessage *msg, GstreamerRadio *radio) {
+void GstreamerRadio::gstreamSignal(GstBus *bus, GstMessage *msg, GstreamerRadio *radio)
+{
     switch (GST_MESSAGE_TYPE (msg)) {
         case GST_MESSAGE_ERROR: {
             emit radio->bufferChanged(-1);

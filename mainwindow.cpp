@@ -133,8 +133,8 @@ void MainWindow::playRadio(bool how){
         ui->labelCurrentArtist->setText("Apasa butonul play");
         ui->buttonPlay->setStyleSheet("QToolButton{border:none;padding:0px;margin:0px;background-image:url(:/images/play-button.png);}");
         ui->labelHand->setVisible(true);
-        ui->labelHand->graphicsEffect()->setProperty("opacity", 1);
         ui->labelCurrentSong->setText("");
+        ui->labelHand->graphicsEffect()->setProperty("opacity", 1);
         handMove->start();
 
         currentSong.stop();
@@ -198,14 +198,8 @@ void MainWindow::setVolume(int value)
     settings->setValue("volume", value);
     ui->sliderVolume->setValue(value);
 
-    double vol = value / 100.0;
-    vol *= vol * vol;
-
-    if(vol > 0.95)
-        vol = 1;
-
     if(playing){
-        radio.setVolume(vol);
+        radio.setVolume(volume);
     }
 }
 

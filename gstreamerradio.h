@@ -20,7 +20,7 @@ public:
     void init();
     void play(QString url);
     void stop();
-    void setVolume(double volume);
+    void setVolume(int volume);
 
     static void gstreamSignal(GstBus *bus, GstMessage *msg, GstreamerRadio *radio);
 
