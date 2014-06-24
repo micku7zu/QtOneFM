@@ -241,8 +241,6 @@ void MainWindow::on_checkBoxTitleBar_toggled(bool checked)
         this->setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint);
     }
 
-<<<<<<< HEAD
-=======
     //detect compiz
     FILE *in;
     char buff[512];
@@ -263,7 +261,6 @@ void MainWindow::on_checkBoxTitleBar_toggled(bool checked)
         this->setWindowState(Qt::WindowActive);
     }
 
->>>>>>> d39e492c6d97e02fc65db6775e0ede476922d73a
     this->showNormal();
 
 
