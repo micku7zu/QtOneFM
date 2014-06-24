@@ -369,7 +369,6 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
 }
 
 
-
 void MainWindow::on_checkBoxTitleBar_toggled(bool checked)
 {
     settings->setValue("systemTitle", checked);
@@ -393,3 +392,4 @@ void MainWindow::on_buttonMinimize_clicked()
 {
     this->setWindowState(Qt::WindowMinimized);
 }
+

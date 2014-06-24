@@ -24,5 +24,6 @@
         <file>images/close-icon-hover.png</file>
         <file>images/minimize-icon-hover.png</file>
         <file>images/menu-bg.png</file>
+        <file>images/tux.png</file>
     </qresource>
 </RCC>

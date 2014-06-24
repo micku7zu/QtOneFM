@@ -59,6 +59,7 @@ private slots:
 
     void on_buttonMinimize_clicked();
 
+
 private:
     Ui::MainWindow *ui;
 

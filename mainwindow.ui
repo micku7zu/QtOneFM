@@ -69,6 +69,9 @@
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
     <property name="styleSheet">
      <string notr="true">QToolButton{
 border: none;
@@ -96,6 +99,9 @@ QToolButton:hover{
     </property>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">QToolButton{
@@ -133,6 +139,9 @@ background-image:url(&quot;:/images/logo-small-1.png&quot;);
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
     <property name="styleSheet">
      <string notr="true">QToolButton{
 border: none;
@@ -168,6 +177,9 @@ background-image:url(&quot;:/images/volume-icon-up.png&quot;);
     </property>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">QToolButton{
@@ -268,6 +280,9 @@ height: 39px;
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
     <property name="styleSheet">
      <string notr="true">QToolButton{
 border: none;
@@ -359,6 +374,9 @@ color:white;
       <height>37</height>
      </rect>
     </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
     <property name="styleSheet">
      <string notr="true">QToolButton{
 border:none;
@@ -382,6 +400,9 @@ background-image:url(:/images/star.png)
     </property>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">padding:0px;
@@ -498,6 +519,9 @@ background-position:top left;</string>
      <property name="cursor">
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
      <property name="layoutDirection">
       <enum>Qt::RightToLeft</enum>
      </property>
@@ -542,6 +566,9 @@ background-position:top left;</string>
      <property name="cursor">
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
      <property name="layoutDirection">
       <enum>Qt::RightToLeft</enum>
      </property>
@@ -569,6 +596,10 @@ background-position:top left;</string>
       <string>Another checkbox to test</string>
      </property>
     </widget>
+    <zorder>checkBoxTitleBar</zorder>
+    <zorder>checkboxTest</zorder>
+    <zorder>closeMenu_button</zorder>
+    <zorder>closeMenu_button</zorder>
    </widget>
    <widget class="QToolButton" name="buttonClose">
     <property name="geometry">
@@ -581,6 +612,9 @@ background-position:top left;</string>
     </property>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
     </property>
     <property name="styleSheet">
      <string notr="true">QToolButton{
@@ -612,6 +646,9 @@ background-image: url(:/images/close-icon-hover.png)
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
     <property name="styleSheet">
      <string notr="true">QToolButton{
 border: none;
@@ -628,6 +665,22 @@ background-image: url(:/images/minimize-icon-hover.png)
     </property>
     <property name="text">
      <string/>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>580</y>
+      <width>105</width>
+      <height>52</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: none;
+padding: 0px;
+margin: 0px;
+background-image:url(:/images/tux.png);</string>
     </property>
    </widget>
    <zorder>buttonLogo</zorder>
@@ -647,6 +700,7 @@ background-image: url(:/images/minimize-icon-hover.png)
    <zorder>buttonClose</zorder>
    <zorder>buttonMinimize</zorder>
    <zorder>buttonMenu</zorder>
+   <zorder>graphicsView</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
