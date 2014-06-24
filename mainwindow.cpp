@@ -134,6 +134,11 @@ void MainWindow::on_buttonMenu_clicked()
 }
 
 void MainWindow::loadSettings(){
+
+    isMouseDown = false;
+    iXdeffarace = -1;
+    iYdeffarance = -1;
+
     playing = false;
     playUrls[0] = "http://80.86.106.35:8032/"; //onefm
     playUrls[1] = "http://93.113.171.27:80/"; //onefm underground
@@ -360,7 +365,7 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
     if(isMouseDown == true){
         QPoint qpAppNewLoc( (QCursor::pos().x() - iXdeffarace) , (QCursor::pos().y() - iYdeffarance) );
         this->setProperty("pos", qpAppNewLoc);
-        }
+    }
 }
 
 

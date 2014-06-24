@@ -80,9 +80,9 @@ private:
     bool systemTitle;
     QSettings *settings;
     QTimer *timer;
-    bool isMouseDown = false;
-    int iXdeffarace = -1;
-    int iYdeffarance = -1;
+    bool isMouseDown;
+    int iXdeffarace;
+    int iYdeffarance;
 
     QPropertyAnimation *handMove;
     QPropertyAnimation *handFade;
