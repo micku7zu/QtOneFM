@@ -10,18 +10,12 @@
 #include <QDesktopServices>
 #include <QMouseEvent>
 #include <QApplication>
-#include <gst/gst.h>
 
 #include "currentsong.h"
-
-
-typedef struct _gstream {
-    GstElement *pipeline;
-    GstBus *bus;
-} GStream;
+#include "gstreamerradio.h"
 
 namespace Ui {
-class MainWindow;
+    class MainWindow;
 }
 
 class MainWindow : public QMainWindow
@@ -39,13 +33,13 @@ private slots:
 
     void on_sliderVolume_valueChanged(int value);
 
-    void on_buttonLogo_clicked();
-
-    void on_buttonTopLogo_clicked();
-
     void on_buttonVolumeDown_clicked();
 
     void on_buttonVolumeUp_clicked();
+
+    void on_buttonLogo_clicked();
+
+    void on_buttonTopLogo_clicked();
 
     void on_checkBoxTitleBar_toggled(bool checked);
 
@@ -53,9 +47,11 @@ private slots:
 
     void on_buttonMinimize_clicked();
 
-    void on_toolButton_clicked();
+    void on_buttonLinux_clicked();
 
     void songChanged();
+
+    void bufferChanged(int value);
 
 private:
     Ui::MainWindow *ui;
@@ -68,16 +64,12 @@ private:
     void playRadio(bool how);
     void setVolume(int value);
     QString getPage(QString url);
-    static void gstreamSignal(GstBus *bus, GstMessage *msg, MainWindow *w);
 
     bool playing;
-    QString playUrls[2];
-    QString siteUrls[2];
     int current; //current radio
     int volume;
     bool systemTitle;
     QSettings *settings;
-    QTimer *timer;
     bool isMouseDown;
     int iXdeffarace;
     int iYdeffarance;
@@ -86,9 +78,11 @@ private:
     QPropertyAnimation *handFade;
     QPropertyAnimation *menuFade;
 
-    GStream gstream;
+    GstreamerRadio radio;
     CurrentSong currentSong;
 
+    QString playUrls[2];
+    QString siteUrls[2];
 protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);

@@ -8,7 +8,7 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QEventLoop>
-
+#include <QDebug>
 #include <QObject>
 
 class CurrentSong : public QObject

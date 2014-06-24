@@ -663,7 +663,7 @@ background-image: url(:/images/minimize-icon-hover.png)
      <string/>
     </property>
    </widget>
-   <widget class="QToolButton" name="toolButton">
+   <widget class="QToolButton" name="buttonLinux">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -702,7 +702,7 @@ background:url(:/images/tux.png)</string>
    <zorder>buttonClose</zorder>
    <zorder>buttonMinimize</zorder>
    <zorder>buttonMenu</zorder>
-   <zorder>toolButton</zorder>
+   <zorder>buttonLinux</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

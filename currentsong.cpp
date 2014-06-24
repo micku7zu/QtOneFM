@@ -28,6 +28,7 @@ void CurrentSong::getCurrent()
 {
     song = QString("Unknown");
     artist = QString("Unknown");
+    emit songChanged();
 
     if(which == 0){
 
@@ -53,24 +54,23 @@ void CurrentSong::getCurrent()
         artist.chop(3);
 
         list = page.split("theTitle : '");
-
         if(list.size() < 2)
             return;
 
         song = list.at(1);
-        song.chop(3);
+        song.chop(2);
 
         list = song.split(" - ");
 
-        if(list.size() < 2)
-            return;
-        song = list.at(1);
+        if(list.size() < 2){
+            song = list.at(0);
+        }else{
+            song = list.at(1);
+        }
 
-        if(song.length() <= 2)
-            return;
     }
 
-    emit songChanged();;
+    emit songChanged();
 }
 
 QString CurrentSong::getPage(QString site)

@@ -1,21 +1,17 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2014-05-29T17:02:06
-#
-#-------------------------------------------------
-
 QT       += core gui widgets network
 
 TARGET = OneFM
 TEMPLATE = app
 
-
 SOURCES += main.cpp\
         mainwindow.cpp \
-    currentsong.cpp
+    currentsong.cpp \
+    gstreamerradio.cpp
 
 HEADERS  += mainwindow.h \
-    currentsong.h
+    currentsong.h \
+    radio.h \
+    gstreamerradio.h
 
 FORMS    += mainwindow.ui
 

@@ -23,8 +23,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(&currentSong, SIGNAL(songChanged()), this, SLOT(songChanged()));
 
-    /* Initialize GStreamer */
-    gst_init (NULL, NULL);
+    radio.init();
+    connect(&radio, SIGNAL(bufferChanged(int)), this, SLOT(bufferChanged(int)));
 }
 
 MainWindow::~MainWindow()
@@ -133,17 +133,14 @@ void MainWindow::playRadio(bool how){
         ui->labelCurrentArtist->setText("Apasa butonul play");
         ui->buttonPlay->setStyleSheet("QToolButton{border:none;padding:0px;margin:0px;background-image:url(:/images/play-button.png);}");
         ui->labelHand->setVisible(true);
-        handMove->start();
         ui->labelHand->graphicsEffect()->setProperty("opacity", 1);
-
         ui->labelCurrentSong->setText("");
+        handMove->start();
 
         currentSong.stop();
-
-        gst_object_unref(gstream.bus);
-        gst_element_set_state(gstream.pipeline, GST_STATE_NULL);
-        gst_object_unref(gstream.pipeline);
+        radio.stop();
     }else{
+
         playing = true;
         ui->labelCurrentArtist->setText("Playing");
         ui->buttonPlay->setStyleSheet("QToolButton{border:none;padding:0px;margin:0px;background-image:url(:/images/stop.png);}");
@@ -151,22 +148,7 @@ void MainWindow::playRadio(bool how){
         handMove->stop();
         handFade->start();
 
-        //gstream
-        QString command = QString("playbin2 uri=%1").arg(playUrls[current]);
-        gstream.pipeline = gst_parse_launch (command.toStdString().c_str(), NULL);
-        on_sliderVolume_valueChanged(volume);
-
-        gstream.bus = gst_element_get_bus (gstream.pipeline);
-
-        gst_element_set_state (gstream.pipeline, GST_STATE_PLAYING);
-        GstStateChangeReturn ret = gst_element_set_state (gstream.pipeline, GST_STATE_PLAYING);
-        if (ret == GST_STATE_CHANGE_FAILURE) {
-            qDebug() << "Eroare la gstream.";
-            gst_object_unref(gstream.pipeline);
-        }
-
-        gst_bus_add_signal_watch(gstream.bus);
-        g_signal_connect (gstream.bus, "message", G_CALLBACK (gstreamSignal), this);
+        radio.play(playUrls[current]);
     }
 }
 
@@ -223,7 +205,7 @@ void MainWindow::setVolume(int value)
         vol = 1;
 
     if(playing){
-        g_object_set(gstream.pipeline, "volume", vol, NULL);
+        radio.setVolume(vol);
     }
 }
 
@@ -237,28 +219,6 @@ void MainWindow::on_buttonVolumeUp_clicked()
     setVolume(volume+5);
 }
 
-void MainWindow::gstreamSignal(GstBus *bus, GstMessage *msg, MainWindow *w) {
-    switch (GST_MESSAGE_TYPE (msg)) {
-        case GST_MESSAGE_ERROR: {
-            w->ui->labelCurrentArtist->setText("Error.");
-            break;
-        }
-        case GST_MESSAGE_BUFFERING: {
-            gint percent = 0;
-
-            gst_message_parse_buffering (msg, &percent);
-            w->ui->labelCurrentArtist->setText(QString("Buffering: %1%").arg(percent));
-
-            if(percent == 100){
-                w->currentSong.start(w->current, 30);
-            }
-            break;
-        }
-        default:
-            /* Unhandled message */
-        break;
-    }
-}
 
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
@@ -309,7 +269,7 @@ void MainWindow::on_buttonMinimize_clicked()
     this->setWindowState(Qt::WindowMinimized);
 }
 
-void MainWindow::on_toolButton_clicked()
+void MainWindow::on_buttonLinux_clicked()
 {
     QDesktopServices::openUrl(QUrl("http://www.ubuntu.com/desktop"));
 }
@@ -318,4 +278,15 @@ void MainWindow::songChanged()
 {
     ui->labelCurrentArtist->setText(currentSong.artist);
     ui->labelCurrentSong->setText(currentSong.song);
+}
+
+void MainWindow::bufferChanged(int value){
+    if(value == -1){
+        ui->labelCurrentArtist->setText("Error!");
+    }else
+        ui->labelCurrentArtist->setText(QString("Buffering: %1").arg(value));
+
+    if(value == 100){
+        currentSong.start(current, 30);
+    }
 }
