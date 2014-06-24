@@ -1,7 +1,15 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include <QSystemTrayIcon>
+/***
+ * Dependecies:
+ *
+    //qt5-default
+    //gstreamer0.10-plugins-good
+    //gstreamer0.10-plugins-bad
+    //libxcb
+    //sudo apt-get install qt5-default gstreamer0.10-plugins-good gstreamer0.10-plugins-bad
+*/
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -13,108 +21,15 @@ MainWindow::MainWindow(QWidget *parent) :
     loadSettings();
     setEffects();
 
-    //initialization
-    timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(updateArtist()));
+    connect(&currentSong, SIGNAL(songChanged()), this, SLOT(songChanged()));
 
     /* Initialize GStreamer */
     gst_init (NULL, NULL);
-
-    //qt5-default
-    //gstreamer0.10-plugins-good
-    //gstreamer0.10-plugins-bad
-    //libxcb
-    //sudo apt-get install qt5-default gstreamer0.10-plugins-good gstreamer0.10-plugins-bad
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::updateArtist()
-{
-    qDebug() << "Timer function: ";
-
-    QString fullSong = QString("Unknown");
-    QString artist = QString("Unknown");
-
-    ui->labelCurrentArtist->setText(artist);
-    ui->labelCurrentSong->setText(fullSong);
-
-    if(current == 0){
-
-        QString page = getPage(siteUrls[0]);
-
-        QStringList list = page.split("(");
-
-        if(list.size() < 2)
-            return;
-
-        page = list.at(1);
-        list = page.split(")");
-        page = list.at(0);
-        page.replace("				", "");
-
-        list = page.split("artist : '");
-        if(list.size() < 2)
-            return;
-
-        artist = list.at(1);
-        list = artist.split("theTitle :");
-        artist = list.at(0);
-        artist.chop(3);
-
-        list = page.split("theTitle : '");
-
-        if(list.size() < 2)
-            return;
-
-        fullSong = list.at(1);
-        fullSong.chop(3);
-
-        list = fullSong.split(" - ");
-
-        if(list.size() < 2)
-            return;
-        fullSong = list.at(1);
-
-        qDebug() << QString("Page: %1").arg(page);
-        qDebug() << QString("Artist: %1").arg(artist);
-        qDebug() << QString("Song: %1").arg(fullSong);
-
-        if(fullSong.length() <= 2)
-            return;
-
-
-        ui->labelCurrentArtist->setText(artist);
-        ui->labelCurrentSong->setText(fullSong);
-    }
-}
-
-QString MainWindow::getPage(QString site)
-{
-    QEventLoop eventLoop;
-
-    QNetworkAccessManager mgr;
-    QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
-
-   // QNetworkRequest req( QUrl( QString(site.toStdString().c_str()) ) );
-    QNetworkRequest req(QUrl(QString("http://www.onefm.ro/nowplaying.php")));
-
-    QNetworkReply *reply = mgr.get(req);
-    eventLoop.exec();
-
-    if (reply->error() == QNetworkReply::NoError) {
-        QString ret = QString(reply->readAll());
-        delete reply;
-        return ret;
-    }
-    else {
-        QString ret = QString(reply->errorString());
-        delete reply;
-        return ret;
-    }
 }
 
 void MainWindow::on_buttonMenu_clicked()
@@ -149,6 +64,7 @@ void MainWindow::loadSettings(){
 
     systemTitle = settings->value("systemTitle", true).toBool();
     ui->checkBoxTitleBar->setChecked(systemTitle);
+
     if(!systemTitle){
         this->setWindowFlags(Qt::CustomizeWindowHint);
     }else{
@@ -160,12 +76,11 @@ void MainWindow::loadSettings(){
     current = settings->value("current", 0).toInt();
     setRadio(current);
 
-
-
     ui->sliderVolume->setValue(volume);
 }
 
-void MainWindow::setEffects(){
+void MainWindow::setEffects()
+{
     setShadow(ui->labelCurrentArtist, 1, 3);
     setShadow(ui->labelCurrentSong, 1, 3);
     ui->labelHand->setAttribute(Qt::WA_TransparentForMouseEvents);
@@ -199,7 +114,8 @@ void MainWindow::setEffects(){
     handFade->setEasingCurve(QEasingCurve::InCubic);
 }
 
-void MainWindow::setShadow(QLabel *label, int offset, int blur){
+void MainWindow::setShadow(QLabel *label, int offset, int blur)
+{
     QGraphicsDropShadowEffect* effect = new QGraphicsDropShadowEffect();
     effect->setBlurRadius(blur);
     effect->setOffset(offset);
@@ -222,7 +138,7 @@ void MainWindow::playRadio(bool how){
 
         ui->labelCurrentSong->setText("");
 
-        timer->stop();
+        currentSong.stop();
 
         gst_object_unref(gstream.bus);
         gst_element_set_state(gstream.pipeline, GST_STATE_NULL);
@@ -267,7 +183,8 @@ void MainWindow::on_buttonLogo_clicked()
     setRadio(current);
 }
 
-void MainWindow::setRadio(int which){
+void MainWindow::setRadio(int which)
+{
     settings->setValue("current", which);
 
     ui->buttonTopLogo->setStyleSheet(
@@ -288,7 +205,8 @@ void MainWindow::on_buttonTopLogo_clicked()
     QDesktopServices::openUrl(siteUrls[current]);
 }
 
-void MainWindow::setVolume(int value){
+void MainWindow::setVolume(int value)
+{
     if(value < 0)
         value = 0;
     if(value > 100)
@@ -332,8 +250,7 @@ void MainWindow::gstreamSignal(GstBus *bus, GstMessage *msg, MainWindow *w) {
             w->ui->labelCurrentArtist->setText(QString("Buffering: %1%").arg(percent));
 
             if(percent == 100){
-                w->updateArtist();
-                w->timer->start(1000 * 30);
+                w->currentSong.start(w->current, 30);
             }
             break;
         }
@@ -363,8 +280,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 void MainWindow::mouseMoveEvent(QMouseEvent *event)
 {
     if(isMouseDown == true){
-        QPoint qpAppNewLoc( (QCursor::pos().x() - iXdeffarace) , (QCursor::pos().y() - iYdeffarance) );
-        this->setProperty("pos", qpAppNewLoc);
+        this->setProperty("pos", QPoint((QCursor::pos().x() - iXdeffarace) , (QCursor::pos().y() - iYdeffarance)));
     }
 }
 
@@ -393,8 +309,13 @@ void MainWindow::on_buttonMinimize_clicked()
     this->setWindowState(Qt::WindowMinimized);
 }
 
-
 void MainWindow::on_toolButton_clicked()
 {
     QDesktopServices::openUrl(QUrl("http://www.ubuntu.com/desktop"));
+}
+
+void MainWindow::songChanged()
+{
+    ui->labelCurrentArtist->setText(currentSong.artist);
+    ui->labelCurrentSong->setText(currentSong.song);
 }

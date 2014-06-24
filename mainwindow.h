@@ -2,21 +2,17 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QMessageBox>
-#include <QGraphicsBlurEffect>
-#include <QDebug>
+#include <QLabel>
 #include <QSettings>
+#include <QPropertyAnimation>
+#include <QUrl>
+#include <QGraphicsOpacityEffect>
 #include <QDesktopServices>
-#include <QUrl>
-#include <QVector>
-#include <QtNetwork>
-#include <QUrl>
-#include <QTimer>
-#include <QSystemTrayIcon>
-#include <QWidget>
 #include <QMouseEvent>
-#include <QPoint>
+#include <QApplication>
 #include <gst/gst.h>
+
+#include "currentsong.h"
 
 
 typedef struct _gstream {
@@ -51,16 +47,15 @@ private slots:
 
     void on_buttonVolumeUp_clicked();
 
-    void updateArtist();
-
     void on_checkBoxTitleBar_toggled(bool checked);
 
     void on_buttonClose_clicked();
 
     void on_buttonMinimize_clicked();
 
-
     void on_toolButton_clicked();
+
+    void songChanged();
 
 private:
     Ui::MainWindow *ui;
@@ -92,6 +87,7 @@ private:
     QPropertyAnimation *menuFade;
 
     GStream gstream;
+    CurrentSong currentSong;
 
 protected:
     void mousePressEvent(QMouseEvent *event);
