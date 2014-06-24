@@ -239,6 +239,27 @@ void MainWindow::on_checkBoxTitleBar_toggled(bool checked)
     }else{
         this->setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint);
     }
+
+    //detect compiz
+    FILE *in;
+    char buff[512];
+
+    QString buf;
+
+    if((in = popen("ps cax | grep compiz | wc -l", "r"))){
+        fgets(buff, sizeof(buff), in);
+        buf = QString(buff);
+    }
+
+    pclose(in);
+
+    if(buf.toInt() != 0){
+        qDebug() << "Compiz detected.";
+        this->showNormal();
+        this->setWindowState(Qt::WindowMinimized);
+        this->setWindowState(Qt::WindowActive);
+    }
+
     this->showNormal();
 }
 
