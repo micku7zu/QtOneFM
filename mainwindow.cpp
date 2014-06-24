@@ -1,16 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-/***
- * Dependecies:
- *
-    //qt5-default
-    //gstreamer0.10-plugins-good
-    //gstreamer0.10-plugins-bad
-    //libxcb
-    //sudo apt-get install qt5-default gstreamer0.10-plugins-good gstreamer0.10-plugins-bad
-*/
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -18,13 +8,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowIcon(QIcon(":/images/logo-0.png"));
 
-    loadSettings();
-    setEffects();
-
-    connect(&currentSong, SIGNAL(songChanged()), this, SLOT(songChanged()));
-
     radio.init();
     connect(&radio, SIGNAL(bufferChanged(int)), this, SLOT(bufferChanged(int)));
+    connect(&currentSong, SIGNAL(songChanged()), this, SLOT(songChanged()));
+
+    loadSettings();
+    setEffects();
 }
 
 MainWindow::~MainWindow()
