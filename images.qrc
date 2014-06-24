@@ -25,5 +25,6 @@
         <file>images/minimize-icon-hover.png</file>
         <file>images/menu-bg.png</file>
         <file>images/tux.png</file>
+        <file>images/volume-controller-pressed.png</file>
     </qresource>
 </RCC>

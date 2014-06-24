@@ -246,6 +246,9 @@ background-image:url(&quot;:/images/volume-controller.png&quot;);
 width: 38px;
 height: 39px;
 }
+QSlider::handle:vertical:pressed{
+background-image:url(&quot;:/images/volume-controller-pressed.png&quot;);
+}
 </string>
     </property>
     <property name="orientation">
@@ -607,7 +610,7 @@ background-position:top left;</string>
      </rect>
     </property>
     <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
+     <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="focusPolicy">
      <enum>Qt::NoFocus</enum>
@@ -640,7 +643,7 @@ background-image: url(:/images/close-icon-hover.png)
      </rect>
     </property>
     <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
+     <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="focusPolicy">
      <enum>Qt::NoFocus</enum>
