@@ -1,5 +1,8 @@
 #include "qtradio.h"
 
+#include <QAudioOutput>
+
+
 QtRadio::QtRadio()
 {
 }
@@ -12,6 +15,7 @@ void QtRadio::play(QString url){
     radio.setMedia(QUrl(url));
     radio.play();
 }
+
 
 void QtRadio::stop(){
     radio.stop();

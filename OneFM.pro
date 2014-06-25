@@ -7,14 +7,17 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     currentsong.cpp \
-    gstreamerradio.cpp \
     qtradio.cpp
 
 HEADERS  += mainwindow.h \
     currentsong.h \
     radio.h \
-    gstreamerradio.h \
     qtradio.h
+
+unix {
+    HEADERS += gstreamerradio.h
+    SOURCES += gstreamerradio.cpp
+}
 
 FORMS    += mainwindow.ui
 
