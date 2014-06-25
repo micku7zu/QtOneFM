@@ -8,8 +8,20 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowIcon(QIcon(":/images/logo-0.png"));
 
-    radio.init();
-    connect(&radio, SIGNAL(bufferChanged(int)), this, SLOT(bufferChanged(int)));
+    #ifdef WIN32
+        radio = new QtRadio();
+    #else
+        if(qApp->arguments().contains(QString("--qt5multimedia")) ||
+                qApp->arguments().contains(QString("-m"))){
+            qDebug()<<"Using qt5multimedia plugin for audio play.";
+            radio = new QtRadio();
+        }else{
+            radio = new GstreamerRadio();
+        }
+    #endif
+
+    radio->init();
+    connect(radio, SIGNAL(bufferChanged(int)), this, SLOT(bufferChanged(int)));
     connect(&currentSong, SIGNAL(songChanged()), this, SLOT(songChanged()));
 
     loadSettings();
@@ -127,7 +139,7 @@ void MainWindow::playRadio(bool how){
         handMove->start();
 
         currentSong.stop();
-        radio.stop();
+        radio->stop();
     }else{
 
         playing = true;
@@ -137,7 +149,7 @@ void MainWindow::playRadio(bool how){
         handMove->stop();
         handFade->start();
 
-        radio.play(playUrls[current]);
+        radio->play(playUrls[current]);
     }
 }
 
@@ -188,7 +200,7 @@ void MainWindow::setVolume(int value)
     ui->sliderVolume->setValue(value);
 
     if(playing){
-        radio.setVolume(volume);
+        radio->setVolume(volume);
     }
 }
 

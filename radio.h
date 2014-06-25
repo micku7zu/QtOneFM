@@ -10,9 +10,10 @@ Q_OBJECT
 public:
     Radio(){};
 
-    virtual void play(QString url) = 0;
-    virtual void stop() = 0;
-    virtual void setVolume(int volume) = 0;
+    virtual void init(){};
+    virtual void play(QString url){};
+    virtual void stop(){};
+    virtual void setVolume(int volume){};
 
 signals:
     void bufferChanged(int value);

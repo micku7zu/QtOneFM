@@ -12,7 +12,11 @@
 #include <QApplication>
 
 #include "currentsong.h"
+
+#ifndef Q_OS_WIN32
 #include "gstreamerradio.h"
+#endif
+#include "qtradio.h"
 
 namespace Ui {
     class MainWindow;
@@ -78,7 +82,8 @@ private:
     QPropertyAnimation *handFade;
     QPropertyAnimation *menuFade;
 
-    GstreamerRadio radio;
+    Radio *radio;
+
     CurrentSong currentSong;
 
     QString playUrls[2];
