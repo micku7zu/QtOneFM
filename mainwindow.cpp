@@ -246,8 +246,9 @@ void MainWindow::on_checkBoxTitleBar_toggled(bool checked)
     ui->buttonMinimize->setVisible(!checked);
     ui->buttonClose->setVisible(!checked);
 
+
     if(!checked){
-        this->setWindowFlags(Qt::CustomizeWindowHint);
+        this->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint );
     }else{
         this->setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint);
     }
@@ -273,6 +274,8 @@ void MainWindow::on_checkBoxTitleBar_toggled(bool checked)
     }
 
     this->showNormal();
+
+
 }
 
 void MainWindow::on_buttonClose_clicked()
