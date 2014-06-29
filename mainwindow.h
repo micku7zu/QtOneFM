@@ -14,8 +14,9 @@
 #include "currentsong.h"
 
 #ifndef Q_OS_WIN32
-#include "gstreamerradio.h"
+    #include "gstreamerradio.h"
 #endif
+#include "vlcradio.h"
 
 namespace Ui {
     class MainWindow;

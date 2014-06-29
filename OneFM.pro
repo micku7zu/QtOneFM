@@ -5,11 +5,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-        currentsong.cpp
+        currentsong.cpp \
+    vlcradio.cpp
 
 HEADERS  += mainwindow.h \
     currentsong.h \
-    radio.h
+    radio.h \
+    vlcradio.h
 
 unix {
     HEADERS += gstreamerradio.h
@@ -26,4 +28,5 @@ RESOURCES += \
 unix {
     CONFIG += link_pkgconfig
     PKGCONFIG += gstreamer-0.10
+    LIBS += -lvlc
 }

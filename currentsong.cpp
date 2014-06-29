@@ -47,7 +47,6 @@ void CurrentSong::getCurrent()
         list = page.split("artist : '");
         if(list.size() < 2)
             return;
-
         artist = list.at(1);
         list = artist.split("theTitle :");
         artist = list.at(0);
@@ -56,7 +55,6 @@ void CurrentSong::getCurrent()
         list = page.split("theTitle : '");
         if(list.size() < 2)
             return;
-
         song = list.at(1);
         song.chop(2);
 
@@ -67,7 +65,6 @@ void CurrentSong::getCurrent()
         }else{
             song = list.at(1);
         }
-
     }
 
     emit songChanged();

@@ -8,7 +8,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowIcon(QIcon(":/images/logo-0.png"));
 
-    radio = new GstreamerRadio();
+    #ifdef WIN32
+        radio = new VlcRadio();
+    #else
+        if(qApp->arguments().contains(QString("--vlc")) ||
+            qApp->arguments().contains(QString("-v"))){
+            qDebug()<<"Using libvlc for audio play.";
+            radio = new VlcRadio();
+        }else{
+            radio = new GstreamerRadio();
+        }
+    #endif
 
     radio->init();
     connect(radio, SIGNAL(bufferChanged(int)), this, SLOT(bufferChanged(int)));
