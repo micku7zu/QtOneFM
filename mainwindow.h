@@ -16,7 +16,6 @@
 #ifndef Q_OS_WIN32
 #include "gstreamerradio.h"
 #endif
-#include "qtradio.h"
 
 namespace Ui {
     class MainWindow;

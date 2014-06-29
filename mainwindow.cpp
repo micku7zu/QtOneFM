@@ -8,17 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowIcon(QIcon(":/images/logo-0.png"));
 
-    #ifdef WIN32
-        radio = new QtRadio();
-    #else
-        if(qApp->arguments().contains(QString("--qt5multimedia")) ||
-                qApp->arguments().contains(QString("-m"))){
-            qDebug()<<"Using qt5multimedia plugin for audio play.";
-            radio = new QtRadio();
-        }else{
-            radio = new GstreamerRadio();
-        }
-    #endif
+    radio = new GstreamerRadio();
 
     radio->init();
     connect(radio, SIGNAL(bufferChanged(int)), this, SLOT(bufferChanged(int)));

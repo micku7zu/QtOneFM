@@ -1,5 +1,4 @@
-QT       += core gui widgets network multimedia
-
+QT       += core gui widgets network
 
 TARGET = OneFM
 TEMPLATE = app
@@ -7,14 +6,12 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     currentsong.cpp \
-    gstreamerradio.cpp \
-    qtradio.cpp
+    gstreamerradio.cpp
 
 HEADERS  += mainwindow.h \
     currentsong.h \
-    radio.h \
     gstreamerradio.h \
-    qtradio.h
+    radio.h
 
 FORMS    += mainwindow.ui
 
