@@ -57,7 +57,7 @@ void MainWindow::loadSettings(){
     ui->checkBoxTitleBar->setChecked(systemTitle);
 
     if(!systemTitle){
-        this->setWindowFlags(Qt::CustomizeWindowHint);
+        this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint);
     }else{
         ui->buttonMinimize->setVisible(false);
         ui->buttonClose->setVisible(false);
@@ -217,6 +217,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 
 }
 
+
 void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 {
     isMouseDown = false;
@@ -238,7 +239,7 @@ void MainWindow::on_checkBoxTitleBar_toggled(bool checked)
 
 
     if(!checked){
-        this->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint );
+        this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint );
     }else{
         this->setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint);
     }
