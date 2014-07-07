@@ -242,6 +242,7 @@ void MainWindow::on_checkBoxTitleBar_toggled(bool checked)
         this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint );
     }else{
         this->setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint);
+
     }
 
     //detect compiz
@@ -277,6 +278,7 @@ void MainWindow::on_buttonClose_clicked()
 void MainWindow::on_buttonMinimize_clicked()
 {
     this->setWindowState(Qt::WindowMinimized);
+    this->showNormal();
 }
 
 void MainWindow::on_buttonLinux_clicked()
@@ -295,6 +297,7 @@ void MainWindow::bufferChanged(int value){
         ui->labelCurrentArtist->setText("Error!");
     }else
         ui->labelCurrentArtist->setText(QString("Buffering: %1").arg(value));
+
 
     if(value == 100){
         currentSong.start(current, 30);

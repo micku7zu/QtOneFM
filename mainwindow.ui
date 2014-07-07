@@ -2,6 +2,12 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -10,10 +16,16 @@
     <height>640</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="minimumSize">
    <size>
-    <width>427</width>
-    <height>640</height>
+    <width>0</width>
+    <height>0</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -28,17 +40,53 @@
     <height>1</height>
    </size>
   </property>
+  <property name="mouseTracking">
+   <bool>false</bool>
+  </property>
+  <property name="focusPolicy">
+   <enum>Qt::StrongFocus</enum>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::DefaultContextMenu</enum>
+  </property>
   <property name="windowTitle">
    <string>OneFM</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>:/images/logo.png</normaloff>:/images/logo.png</iconset>
+   <iconset resource="images.qrc">
+    <normaloff>:/images/logo-0.png</normaloff>:/images/logo-0.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>427</width>
+     <height>640</height>
+    </size>
+   </property>
+   <property name="baseSize">
+    <size>
+     <width>427</width>
+     <height>640</height>
+    </size>
+   </property>
+   <property name="mouseTracking">
+    <bool>false</bool>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::StrongFocus</enum>
+   </property>
    <property name="styleSheet">
     <string notr="true">background-image:url(&quot;:/images/background.png&quot;);</string>
    </property>
@@ -332,9 +380,9 @@ background-image:url(:/images/hand.png)
     <property name="geometry">
      <rect>
       <x>136</x>
-      <y>290</y>
+      <y>280</y>
       <width>140</width>
-      <height>51</height>
+      <height>63</height>
      </rect>
     </property>
     <property name="font">
@@ -369,10 +417,13 @@ color:white;
     </property>
    </widget>
    <widget class="QToolButton" name="buttonStar">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>190</y>
+      <y>185</y>
       <width>35</width>
       <height>37</height>
      </rect>
@@ -420,7 +471,7 @@ background:url(:/images/logo-0.png);</string>
     <property name="geometry">
      <rect>
       <x>124</x>
-      <y>250</y>
+      <y>240</y>
       <width>164</width>
       <height>40</height>
      </rect>
@@ -435,8 +486,8 @@ background:url(:/images/logo-0.png);</string>
    <widget class="QLabel" name="labelHearth">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>470</y>
+      <x>255</x>
+      <y>465</y>
       <width>16</width>
       <height>16</height>
      </rect>
@@ -452,7 +503,7 @@ background:url(:/images/logo-0.png);</string>
     <property name="geometry">
      <rect>
       <x>136</x>
-      <y>360</y>
+      <y>352</y>
       <width>140</width>
       <height>51</height>
      </rect>
@@ -709,6 +760,8 @@ background:url(:/images/tux.png)</string>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
  <connections/>
 </ui>
