@@ -458,10 +458,20 @@ background-image:url(:/images/star.png)
     <property name="focusPolicy">
      <enum>Qt::NoFocus</enum>
     </property>
+    <property name="toolTip">
+     <string/>
+    </property>
+    <property name="toolTipDuration">
+     <number>-1</number>
+    </property>
     <property name="styleSheet">
-     <string notr="true">padding:0px;
+     <string notr="true">QPushButton{
+padding:0px;
 border:0px;
-background:url(:/images/logo-0.png);</string>
+background:url(:/images/logo-0.png);
+}
+
+</string>
     </property>
     <property name="text">
      <string/>
@@ -739,6 +749,72 @@ background:url(:/images/tux.png)</string>
      <string/>
     </property>
    </widget>
+   <widget class="QToolButton" name="topLogoTip">
+    <property name="geometry">
+     <rect>
+      <x>156</x>
+      <y>5</y>
+      <width>103</width>
+      <height>38</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>103</width>
+      <height>38</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>103</width>
+      <height>38</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:none;
+background-image:url(:/images/onefmro.png) top center;
+border:0;
+margin:0;
+padding:0;
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="changeRadioTip">
+    <property name="geometry">
+     <rect>
+      <x>11</x>
+      <y>252</y>
+      <width>97</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>97</width>
+      <height>35</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>97</width>
+      <height>35</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:none;
+background-image:url(:/images/change-radio.png) top center;
+border:0;
+margin:0;
+padding:0;
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>buttonLogo</zorder>
    <zorder>buttonVolumeUp</zorder>
    <zorder>buttonVolumeDown</zorder>
@@ -757,7 +833,17 @@ background:url(:/images/tux.png)</string>
    <zorder>buttonMinimize</zorder>
    <zorder>buttonMenu</zorder>
    <zorder>buttonLinux</zorder>
+   <zorder>topLogoTip</zorder>
+   <zorder>changeRadioTip</zorder>
   </widget>
+  <action name="actionClose">
+   <property name="text">
+    <string>Close</string>
+   </property>
+   <property name="toolTip">
+    <string>Close</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>

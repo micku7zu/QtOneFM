@@ -57,8 +57,10 @@ void MainWindow::loadSettings(){
     ui->checkBoxTitleBar->setChecked(systemTitle);
 
     if(!systemTitle){
-        this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint);
+         this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint);
+
     }else{
+        this->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint );
         ui->buttonMinimize->setVisible(false);
         ui->buttonClose->setVisible(false);
     }
@@ -68,7 +70,56 @@ void MainWindow::loadSettings(){
     setRadio(current);
 
     ui->sliderVolume->setValue(volume);
+    ui->buttonTopLogo->installEventFilter(this);
+    ui->buttonLogo->installEventFilter(this);
+
+    ui->topLogoTip->setVisible(false);
+    ui->changeRadioTip->setVisible(false);
 }
+
+bool MainWindow::eventFilter(QObject* obj, QEvent* e)
+{
+
+    if(obj == ui->buttonTopLogo)
+    {
+
+        if(e->type() == QEvent::Enter)
+        {
+
+            ui->topLogoTip->setVisible(true);
+
+        }
+        if(e->type() == QEvent::Leave)
+        {
+
+            ui->topLogoTip->setVisible(false);
+
+        }
+
+    }
+
+    if(obj == ui->buttonLogo)
+    {
+
+        if(e->type() == QEvent::Enter)
+        {
+
+            ui->changeRadioTip->setVisible(true);
+
+        }
+        if(e->type() == QEvent::Leave)
+        {
+
+            ui->changeRadioTip->setVisible(false);
+
+        }
+
+    }
+
+    return false;
+
+}
+
 
 void MainWindow::setEffects()
 {
@@ -239,9 +290,11 @@ void MainWindow::on_checkBoxTitleBar_toggled(bool checked)
 
 
     if(!checked){
-        this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint );
+        this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint );
+
     }else{
-        this->setWindowFlags(Qt::Window | Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint);
+        this->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint );
+
 
     }
 
@@ -303,3 +356,4 @@ void MainWindow::bufferChanged(int value){
         currentSong.start(current, 30);
     }
 }
+

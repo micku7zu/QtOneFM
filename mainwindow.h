@@ -10,6 +10,7 @@
 #include <QDesktopServices>
 #include <QMouseEvent>
 #include <QApplication>
+#include <QObject>
 
 #include "currentsong.h"
 
@@ -92,6 +93,7 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     QPoint mousePoint;
+    bool eventFilter(QObject*, QEvent* e);
 };
 
 #endif // MAINWINDOW_H

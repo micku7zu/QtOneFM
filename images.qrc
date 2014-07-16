@@ -26,5 +26,7 @@
         <file>images/menu-bg.png</file>
         <file>images/tux.png</file>
         <file>images/volume-controller-pressed.png</file>
+        <file>images/change-radio.png</file>
+        <file>images/onefmro.png</file>
     </qresource>
 </RCC>
