@@ -9,15 +9,15 @@ class Radio : public QObject
 {
 Q_OBJECT
 public:
-    Radio(){};
+ Radio(){};
 
-    virtual void init(){};
-    virtual void play(QString url){};
-    virtual void stop(){};
-    virtual void setVolume(int volume){};
+ virtual void init(){};
+ virtual void play(QString url){};
+ virtual void stop(){};
+ virtual void setVolume(int volume){};
 
 signals:
-    void bufferChanged(int value);
+ void bufferChanged(int value);
 };
 
 #endif // RADIO_H
