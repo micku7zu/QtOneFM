@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "efects.cpp"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -21,22 +22,6 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::on_buttonMenu_clicked()
-{
-    int val = menuFade->currentValue().toInt();
-
-    if(val == 0){
-        ui->widgetMenu->setAttribute(Qt::WA_TransparentForMouseEvents, false);
-    }else{
-        ui->widgetMenu->setAttribute(Qt::WA_TransparentForMouseEvents);
-    }
-
-    menuFade->setStartValue(val);
-    menuFade->setEndValue((val+1)%2);
-    menuFade->start();
-
 }
 
 void MainWindow::loadSettings(){
@@ -77,92 +62,23 @@ void MainWindow::loadSettings(){
     ui->changeRadioTip->setVisible(false);
 }
 
-bool MainWindow::eventFilter(QObject* obj, QEvent* e)
+void MainWindow::on_buttonMenu_clicked()
 {
+    int val = menuFade->currentValue().toInt();
 
-    if(obj == ui->buttonTopLogo)
-    {
-
-        if(e->type() == QEvent::Enter)
-        {
-
-            ui->topLogoTip->setVisible(true);
-
-        }
-        if(e->type() == QEvent::Leave)
-        {
-
-            ui->topLogoTip->setVisible(false);
-
-        }
-
+    if(val == 0){
+        ui->widgetMenu->setAttribute(Qt::WA_TransparentForMouseEvents, false);
+    }else{
+        ui->widgetMenu->setAttribute(Qt::WA_TransparentForMouseEvents);
     }
 
-    if(obj == ui->buttonLogo)
-    {
-
-        if(e->type() == QEvent::Enter)
-        {
-
-            ui->changeRadioTip->setVisible(true);
-
-        }
-        if(e->type() == QEvent::Leave)
-        {
-
-            ui->changeRadioTip->setVisible(false);
-
-        }
-
-    }
-
-    return false;
+    menuFade->setStartValue(val);
+    menuFade->setEndValue((val+1)%2);
+    menuFade->start();
 
 }
 
 
-void MainWindow::setEffects()
-{
-    setShadow(ui->labelCurrentArtist, 1, 3);
-    setShadow(ui->labelCurrentSong, 1, 3);
-    ui->labelHand->setAttribute(Qt::WA_TransparentForMouseEvents);
-
-    QGraphicsOpacityEffect *menuOpacity = new QGraphicsOpacityEffect;
-    menuFade = new QPropertyAnimation(menuOpacity, "opacity");
-    menuOpacity->setOpacity(0);
-    ui->widgetMenu->setAttribute(Qt::WA_TransparentForMouseEvents);
-    ui->widgetMenu->setGraphicsEffect(menuOpacity);
-    menuFade->setDuration(400);
-    menuFade->setStartValue(0);
-    menuFade->setEndValue(1);
-    menuFade->setEasingCurve(QEasingCurve::InCubic);
-
-    //handMove
-    handMove = new QPropertyAnimation(ui->labelHand, "geometry");
-    handMove->setDuration(1300);
-    handMove->setKeyValueAt(0, QRect(170, 360, 73, 73));
-    handMove->setKeyValueAt(1, QRect(170, 390, 73, 73));
-    handMove->setEasingCurve(QEasingCurve::OutBounce);
-    handMove->setLoopCount(-1);
-    handMove->start();
-
-    //hand fade
-    QGraphicsOpacityEffect *handOpacity = new QGraphicsOpacityEffect;
-    handFade = new QPropertyAnimation(handOpacity, "opacity");
-    ui->labelHand->setGraphicsEffect(handOpacity);
-    handFade->setDuration(400);
-    handFade->setStartValue(1);
-    handFade->setEndValue(0);
-    handFade->setEasingCurve(QEasingCurve::InCubic);
-}
-
-void MainWindow::setShadow(QLabel *label, int offset, int blur)
-{
-    QGraphicsDropShadowEffect* effect = new QGraphicsDropShadowEffect();
-    effect->setBlurRadius(blur);
-    effect->setOffset(offset);
-    label->setGraphicsEffect(effect);
-}
 
 void MainWindow::on_buttonPlay_clicked()
 {

@@ -14,6 +14,7 @@
 
 #include "currentsong.h"
 
+
 #ifndef Q_OS_WIN32
     #include "gstreamerradio.h"
 #endif
@@ -81,6 +82,8 @@ private:
     QPropertyAnimation *handMove;
     QPropertyAnimation *handFade;
     QPropertyAnimation *menuFade;
+    QPropertyAnimation *topLogoTipFade;
+    QPropertyAnimation *changeRadioTipFade;
 
     Radio *radio;
 
@@ -93,7 +96,7 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     QPoint mousePoint;
-    bool eventFilter(QObject*, QEvent* e);
+    bool eventFilter(QObject*, QEvent* event);
 };
 
 #endif // MAINWINDOW_H

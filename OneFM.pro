@@ -6,6 +6,7 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
         currentsong.cpp \
+    efects.cpp
 
 HEADERS  += mainwindow.h \
     currentsong.h \
