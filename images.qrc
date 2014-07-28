@@ -28,5 +28,6 @@
         <file>images/volume-controller-pressed.png</file>
         <file>images/change-radio.png</file>
         <file>images/onefmro.png</file>
+        <file>images/checkbox.png</file>
     </qresource>
 </RCC>

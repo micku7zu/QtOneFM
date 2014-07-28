@@ -43,9 +43,11 @@ void MainWindow::loadSettings(){
 
     if(!systemTitle){
          this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint);
+         ui->topLogoTip->setVisible(true);
+         ui->changeRadioTip->setVisible(true);
 
     }else{
-        this->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint );
+        this->setWindowFlags(Qt::Window | Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint );
         ui->buttonMinimize->setVisible(false);
         ui->buttonClose->setVisible(false);
     }
@@ -77,7 +79,6 @@ void MainWindow::on_buttonMenu_clicked()
     menuFade->start();
 
 }
-
 
 
 void MainWindow::on_buttonPlay_clicked()
@@ -128,10 +129,10 @@ void MainWindow::setRadio(int which)
     settings->setValue("current", which);
 
     ui->buttonTopLogo->setStyleSheet(
-                QString("padding:0px;border:0px;background:url(:/images/logo-%1.png);")
+                QString("padding:0px;border:0px;background-image:url(:/images/logo-%1.png); background-position:center center; background-repeat:no-repeat;")
                 .arg(current));
     ui->buttonLogo->setStyleSheet(
-                QString("QToolButton{border: none;padding: 0px;margin: 0px;background-image:url(':/images/logo-small-%1.png');}")
+                QString("QToolButton{border: none;padding: 0px;margin: 0px;background-image:url(':/images/logo-small-%1.png'); background-position:center center; background-repeat:no-repeat;}")
                 .arg((current+1)%2));
 
     if(playing == true){
@@ -209,7 +210,7 @@ void MainWindow::on_checkBoxTitleBar_toggled(bool checked)
         this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint );
 
     }else{
-        this->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint );
+        this->setWindowFlags(Qt::Window | Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint );
 
 
     }

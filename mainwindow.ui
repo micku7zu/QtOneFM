@@ -2,83 +2,49 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
-  <property name="windowModality">
-   <enum>Qt::NonModal</enum>
-  </property>
-  <property name="enabled">
-   <bool>true</bool>
-  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>427</width>
-    <height>640</height>
+    <width>354</width>
+    <height>530</height>
    </rect>
-  </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
   </property>
   <property name="minimumSize">
    <size>
-    <width>427</width>
-    <height>640</height>
+    <width>354</width>
+    <height>530</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>427</width>
-    <height>640</height>
+    <width>354</width>
+    <height>530</height>
    </size>
-  </property>
-  <property name="sizeIncrement">
-   <size>
-    <width>1</width>
-    <height>1</height>
-   </size>
-  </property>
-  <property name="mouseTracking">
-   <bool>false</bool>
-  </property>
-  <property name="focusPolicy">
-   <enum>Qt::StrongFocus</enum>
-  </property>
-  <property name="contextMenuPolicy">
-   <enum>Qt::DefaultContextMenu</enum>
   </property>
   <property name="windowTitle">
-   <string>OneFM</string>
-  </property>
-  <property name="windowIcon">
-   <iconset resource="images.qrc">
-    <normaloff>:/images/logo-0.png</normaloff>:/images/logo-0.png</iconset>
+   <string>MainWindow</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
+   <property name="minimumSize">
+    <size>
+     <width>354</width>
+     <height>530</height>
+    </size>
    </property>
    <property name="maximumSize">
     <size>
-     <width>427</width>
-     <height>640</height>
+     <width>354</width>
+     <height>530</height>
     </size>
    </property>
    <property name="baseSize">
     <size>
-     <width>427</width>
-     <height>640</height>
+     <width>0</width>
+     <height>0</height>
     </size>
    </property>
    <property name="mouseTracking">
@@ -96,22 +62,22 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>380</x>
+      <x>314</x>
       <y>10</y>
-      <width>37</width>
-      <height>30</height>
+      <width>33</width>
+      <height>27</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>37</width>
-      <height>0</height>
+      <width>33</width>
+      <height>27</height>
      </size>
     </property>
     <property name="maximumSize">
      <size>
-      <width>37</width>
-      <height>16777215</height>
+      <width>33</width>
+      <height>27</height>
      </size>
     </property>
     <property name="cursor">
@@ -139,10 +105,10 @@ QToolButton:hover{
    <widget class="QToolButton" name="buttonLogo">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>270</y>
-      <width>100</width>
-      <height>100</height>
+      <x>7</x>
+      <y>208</y>
+      <width>91</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="cursor">
@@ -166,10 +132,10 @@ background-image:url(&quot;:/images/logo-small-1.png&quot;);
    <widget class="QToolButton" name="buttonVolumeUp">
     <property name="geometry">
      <rect>
-      <x>342</x>
-      <y>135</y>
-      <width>34</width>
-      <height>29</height>
+      <x>292</x>
+      <y>124</y>
+      <width>31</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -195,7 +161,7 @@ background-image:url(&quot;:/images/logo-small-1.png&quot;);
 border: none;
 margin: 0px;
 padding: 0px;
-background-image:url(&quot;:/images/volume-icon-up.png&quot;);
+background-image:url(:/images/volume-icon-up.png);
 }</string>
     </property>
     <property name="text">
@@ -205,10 +171,10 @@ background-image:url(&quot;:/images/volume-icon-up.png&quot;);
    <widget class="QToolButton" name="buttonVolumeDown">
     <property name="geometry">
      <rect>
-      <x>345</x>
-      <y>490</y>
-      <width>27</width>
-      <height>27</height>
+      <x>296</x>
+      <y>426</y>
+      <width>21</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -244,22 +210,22 @@ background-image:url(&quot;:/images/volume-icon-down.png&quot;);
    <widget class="QSlider" name="sliderVolume">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>170</y>
+      <x>285</x>
+      <y>150</y>
       <width>60</width>
-      <height>312</height>
+      <height>272</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>60</width>
-      <height>312</height>
+      <width>0</width>
+      <height>0</height>
      </size>
     </property>
     <property name="maximumSize">
      <size>
-      <width>62</width>
-      <height>16777215</height>
+      <width>60</width>
+      <height>272</height>
      </size>
     </property>
     <property name="cursor">
@@ -269,6 +235,7 @@ background-image:url(&quot;:/images/volume-icon-down.png&quot;);
      <string notr="true">QSlider{
 background-image:url(&quot;:/images/volume-grid.png&quot;);
 background-repeat:no-repeat;
+background-position:center center;
 }
 
 QSlider::groove:vertical{
@@ -291,13 +258,33 @@ margin:0px;
 
 QSlider::handle:vertical{
 background-image:url(&quot;:/images/volume-controller.png&quot;);
-width: 38px;
-height: 39px;
+background-repeat:no-repeat;
+width: 40px;
+height: 32px;
+margin:13px 0 11px -1px;
 }
 QSlider::handle:vertical:pressed{
 background-image:url(&quot;:/images/volume-controller-pressed.png&quot;);
 }
 </string>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>99</number>
+    </property>
+    <property name="singleStep">
+     <number>1</number>
+    </property>
+    <property name="value">
+     <number>1</number>
+    </property>
+    <property name="sliderPosition">
+     <number>1</number>
+    </property>
+    <property name="tracking">
+     <bool>true</bool>
     </property>
     <property name="orientation">
      <enum>Qt::Vertical</enum>
@@ -306,10 +293,10 @@ background-image:url(&quot;:/images/volume-controller-pressed.png&quot;);
    <widget class="QLabel" name="labelCenter">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>97</x>
       <y>10</y>
-      <width>192</width>
-      <height>616</height>
+      <width>160</width>
+      <height>510</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -322,11 +309,17 @@ background-image:url(&quot;:/images/volume-controller-pressed.png&quot;);
    <widget class="QToolButton" name="buttonPlay">
     <property name="geometry">
      <rect>
-      <x>146</x>
-      <y>460</y>
-      <width>120</width>
-      <height>120</height>
+      <x>128</x>
+      <y>386</y>
+      <width>98</width>
+      <height>98</height>
      </rect>
+    </property>
+    <property name="baseSize">
+     <size>
+      <width>98</width>
+      <height>98</height>
+     </size>
     </property>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
@@ -339,7 +332,7 @@ background-image:url(&quot;:/images/volume-controller-pressed.png&quot;);
 border: none;
 padding:0px;
 margin:0px;
-background-image:url(:/images/play-button.png)
+background-image:url(:/images/play-button.png) no-repeat center center;
 }</string>
     </property>
     <property name="text">
@@ -352,10 +345,10 @@ background-image:url(:/images/play-button.png)
     </property>
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>360</y>
-      <width>73</width>
-      <height>73</height>
+      <x>143</x>
+      <y>300</y>
+      <width>61</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="mouseTracking">
@@ -379,8 +372,8 @@ background-image:url(:/images/hand.png)
    <widget class="QLabel" name="labelCurrentArtist">
     <property name="geometry">
      <rect>
-      <x>136</x>
-      <y>280</y>
+      <x>106</x>
+      <y>230</y>
       <width>140</width>
       <height>63</height>
      </rect>
@@ -388,7 +381,7 @@ background-image:url(:/images/hand.png)
     <property name="font">
      <font>
       <family>URW Gothic L</family>
-      <pointsize>12</pointsize>
+      <pointsize>11</pointsize>
       <weight>50</weight>
       <bold>false</bold>
      </font>
@@ -422,10 +415,10 @@ color:white;
     </property>
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>185</y>
-      <width>35</width>
-      <height>37</height>
+      <x>161</x>
+      <y>160</y>
+      <width>31</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -446,10 +439,10 @@ background-image:url(:/images/star.png)
    <widget class="QPushButton" name="buttonTopLogo">
     <property name="geometry">
      <rect>
-      <x>116</x>
-      <y>10</y>
-      <width>180</width>
-      <height>180</height>
+      <x>106</x>
+      <y>14</y>
+      <width>140</width>
+      <height>140</height>
      </rect>
     </property>
     <property name="cursor">
@@ -468,7 +461,9 @@ background-image:url(:/images/star.png)
      <string notr="true">QPushButton{
 padding:0px;
 border:0px;
-background:url(:/images/logo-0.png);
+background-image:url(:/images/logo-0.png);
+background-repeat:no-repeat;
+background-position:center center;
 }
 
 </string>
@@ -480,10 +475,10 @@ background:url(:/images/logo-0.png);
    <widget class="QLabel" name="labelLive">
     <property name="geometry">
      <rect>
-      <x>124</x>
-      <y>240</y>
-      <width>164</width>
-      <height>40</height>
+      <x>110</x>
+      <y>200</y>
+      <width>131</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -496,10 +491,10 @@ background:url(:/images/logo-0.png);
    <widget class="QLabel" name="labelHearth">
     <property name="geometry">
      <rect>
-      <x>255</x>
-      <y>465</y>
-      <width>16</width>
-      <height>16</height>
+      <x>220</x>
+      <y>370</y>
+      <width>13</width>
+      <height>13</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -512,8 +507,8 @@ background:url(:/images/logo-0.png);
    <widget class="QLabel" name="labelCurrentSong">
     <property name="geometry">
      <rect>
-      <x>136</x>
-      <y>352</y>
+      <x>106</x>
+      <y>294</y>
       <width>140</width>
       <height>51</height>
      </rect>
@@ -521,7 +516,7 @@ background:url(:/images/logo-0.png);
     <property name="font">
      <font>
       <family>URW Gothic L</family>
-      <pointsize>12</pointsize>
+      <pointsize>11</pointsize>
       <weight>50</weight>
       <bold>false</bold>
      </font>
@@ -552,11 +547,23 @@ color:white;
    <widget class="QWidget" name="widgetMenu" native="true">
     <property name="geometry">
      <rect>
-      <x>107</x>
+      <x>38</x>
       <y>20</y>
       <width>311</width>
       <height>441</height>
      </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>311</width>
+      <height>441</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>311</width>
+      <height>441</height>
+     </size>
     </property>
     <property name="styleSheet">
      <string notr="true">border: none;
@@ -571,7 +578,7 @@ background-position:top left;</string>
        <x>20</x>
        <y>50</y>
        <width>281</width>
-       <height>30</height>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
@@ -595,16 +602,19 @@ background-position:top left;</string>
  }
 
  QCheckBox::indicator {
-     width: 67px;
-     height: 30px;
+     width: 53px;
+     height: 35px;
+	 margin:9px 5px 3px 3px;
  }
 
  QCheckBox::indicator:unchecked {
-     image: url(:/images/checkbox_unchecked.png);
+     background-image: url(:/images/checkbox.png);
+     background-position:right center;
  }
 
  QCheckBox::indicator:checked {
-     image: url(:/images/checkbox_checked.png);
+     background-image: url(:/images/checkbox.png);
+     background-position:left center;
  }
 </string>
      </property>
@@ -618,7 +628,7 @@ background-position:top left;</string>
        <x>20</x>
        <y>90</y>
        <width>281</width>
-       <height>30</height>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
@@ -642,16 +652,19 @@ background-position:top left;</string>
  }
 
  QCheckBox::indicator {
-     width: 67px;
-     height: 30px;
+     width: 53px;
+     height: 35px;
+	 margin:9px 5px 3px 3px;
  }
 
  QCheckBox::indicator:unchecked {
-     image: url(:/images/checkbox_unchecked.png);
+     background-image: url(:/images/checkbox.png);
+     background-position:right center;
  }
 
  QCheckBox::indicator:checked {
-     image: url(:/images/checkbox_checked.png);
+     background-image: url(:/images/checkbox.png);
+     background-position:left center;
  }
 
 </string>
@@ -666,9 +679,21 @@ background-position:top left;</string>
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>24</width>
-      <height>24</height>
+      <width>26</width>
+      <height>26</height>
      </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>26</width>
+      <height>26</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>26</width>
+      <height>26</height>
+     </size>
     </property>
     <property name="cursor">
      <cursorShape>ArrowCursor</cursorShape>
@@ -679,8 +704,8 @@ background-position:top left;</string>
     <property name="styleSheet">
      <string notr="true">QToolButton{
 border: none;
-width:24px;
-height:24px;
+width:26px;
+height:26px;
 margin: 0px;
 padding: 0px;
 background-image: url(:/images/close-icon.png)
@@ -697,10 +722,10 @@ background-image: url(:/images/close-icon-hover.png)
    <widget class="QToolButton" name="buttonMinimize">
     <property name="geometry">
      <rect>
-      <x>24</x>
+      <x>26</x>
       <y>0</y>
-      <width>24</width>
-      <height>24</height>
+      <width>26</width>
+      <height>26</height>
      </rect>
     </property>
     <property name="cursor">
@@ -712,8 +737,8 @@ background-image: url(:/images/close-icon-hover.png)
     <property name="styleSheet">
      <string notr="true">QToolButton{
 border: none;
-width:24px;
-height:24px;
+width:26px;
+height:26px;
 margin: 0px;
 padding: 0px;
 background-image: url(:/images/minimize-icon.png)
@@ -731,9 +756,9 @@ background-image: url(:/images/minimize-icon-hover.png)
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>580</y>
-      <width>105</width>
-      <height>52</height>
+      <y>480</y>
+      <width>85</width>
+      <height>42</height>
      </rect>
     </property>
     <property name="cursor">
@@ -750,10 +775,13 @@ background:url(:/images/tux.png)</string>
     </property>
    </widget>
    <widget class="QToolButton" name="topLogoTip">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>156</x>
-      <y>5</y>
+      <x>125</x>
+      <y>6</y>
       <width>103</width>
       <height>38</height>
      </rect>
@@ -770,13 +798,17 @@ background:url(:/images/tux.png)</string>
       <height>38</height>
      </size>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true">background:none;
 background-image:url(:/images/onefmro.png) top center;
 border:0;
 margin:0;
-padding:0;
-</string>
+padding:0;</string>
     </property>
     <property name="text">
      <string/>
@@ -785,8 +817,8 @@ padding:0;
    <widget class="QToolButton" name="changeRadioTip">
     <property name="geometry">
      <rect>
-      <x>11</x>
-      <y>252</y>
+      <x>5</x>
+      <y>184</y>
       <width>97</width>
       <height>35</height>
      </rect>
@@ -846,8 +878,6 @@ padding:0;
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="images.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

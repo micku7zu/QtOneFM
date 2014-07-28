@@ -54,7 +54,8 @@ void MainWindow::setEffects()
     setShadow(ui->labelCurrentSong, 1, 3);
     ui->labelHand->setAttribute(Qt::WA_TransparentForMouseEvents);
 
-    QGraphicsOpacityEffect *menuOpacity = new QGraphicsOpacityEffect;
+
+     QGraphicsOpacityEffect *menuOpacity = new QGraphicsOpacityEffect;
     menuFade = new QPropertyAnimation(menuOpacity, "opacity");
     menuOpacity->setOpacity(0);
     ui->widgetMenu->setAttribute(Qt::WA_TransparentForMouseEvents);
@@ -67,8 +68,8 @@ void MainWindow::setEffects()
     //handMove
     handMove = new QPropertyAnimation(ui->labelHand, "geometry");
     handMove->setDuration(1300);
-    handMove->setKeyValueAt(0, QRect(170, 360, 73, 73));
-    handMove->setKeyValueAt(1, QRect(170, 390, 73, 73));
+    handMove->setKeyValueAt(0, QRect(143, 290, 61, 61));
+    handMove->setKeyValueAt(1, QRect(143, 320, 61, 61));
     handMove->setEasingCurve(QEasingCurve::OutBounce);
     handMove->setLoopCount(-1);
     handMove->start();

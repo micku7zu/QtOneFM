@@ -78,6 +78,7 @@ private:
     bool isMouseDown;
     int iXdeffarace;
     int iYdeffarance;
+    bool slidingMenu;
 
     QPropertyAnimation *handMove;
     QPropertyAnimation *handFade;
